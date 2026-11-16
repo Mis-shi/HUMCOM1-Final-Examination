@@ -1,0 +1,771 @@
+/* ===== HAMVEN stylesheet ===== */
+:root{
+  --orange:#E8A04D;
+  --orange-dark:#B5651D;
+  --cream:#FFF6EA;
+  --pink:#F0B3B3;
+  --brown:#3A2415;
+  --muted:#6B5A4A;
+  --green:#7AA45A;
+  --red:#D9455A;
+  --white:#ffffff;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html,body{height:100%}
+body{
+  font-family:"Trebuchet MS","Segoe UI",Arial,sans-serif;
+  background:var(--cream);
+  color:var(--brown);
+  display:flex;
+  flex-direction:column;
+  min-height:100vh;
+}
+body.no-scroll{height:100vh;overflow:hidden}
+
+/* ===== Header ===== */
+.site-header{background:var(--orange);flex:0 0 auto}
+.brand-row{text-align:center;padding:8px 0 10px;border-bottom:1px solid rgba(255,255,255,.85)}
+.logo{display:inline-flex;align-items:center;gap:8px;font-size:1.2rem;font-weight:700;letter-spacing:.5px;color:var(--brown);text-decoration:none}
+.main-nav ul{list-style:none;display:flex;justify-content:center;gap:36px;padding:14px 10px 10px}
+.main-nav a{
+  display:inline-block;padding-bottom:4px;
+  font-size:.95rem;font-weight:700;text-transform:uppercase;
+  color:var(--brown);text-decoration:none;
+  border-bottom:2px solid transparent;
+}
+.main-nav a:hover{border-bottom-color:var(--brown)}
+.main-nav a[aria-current="page"]{border-bottom-color:var(--brown)}
+.main-nav a:focus-visible{outline:2px solid var(--brown);outline-offset:3px;border-radius:4px}
+
+/* ===== Layout ===== */
+.container{width:100%}
+main.fit{flex:1 1 auto;min-height:0;display:grid;gap:18px;padding:14px 8px 14px;align-content:stretch}
+main h1{grid-column:1 / -1;font-size:1.9rem;color:var(--brown)}
+
+/* ===== Cards ===== */
+.card{
+  background:var(--white);
+  border-top:6px solid var(--orange);
+  border-radius:22px;
+  padding:16px 18px;
+  box-shadow:0 6px 16px rgba(120,80,30,.12);
+  overflow:hidden;
+  min-height:0;
+}
+.card h2{font-size:1.25rem;margin-bottom:8px;color:var(--brown)}
+.card p{font-size:.95rem;line-height:1.55}
+.tag{
+  display:block;font-size:.75rem;font-weight:700;
+  text-transform:uppercase;letter-spacing:.6px;color:var(--muted);margin-bottom:2px
+}
+
+/* ===== Buttons / chips ===== */
+.actions{display:flex;gap:12px;margin-top:14px;flex-wrap:wrap}
+.btn{
+  display:inline-block;padding:9px 18px;border-radius:999px;
+  background:var(--brown);color:var(--white);
+  font-weight:700;font-size:1rem;text-decoration:none;
+  border:1px solid var(--brown);
+}
+.btn:hover{opacity:.88}
+.btn-light{background:var(--white);color:var(--brown)}
+.chip{
+  display:inline-block;margin:6px 6px 0 0;padding:2px 10px;
+  border:1px solid var(--orange);border-radius:999px;
+  font-size:.8rem;color:var(--brown);background:var(--white)
+}
+.strip .chip{margin:0}
+ul.plain{list-style:none}
+ul.plain li{margin:7px 0;font-size:.95rem}
+ul.links{padding-left:20px}
+ul.links li{margin:8px 0}
+ul.links a{color:var(--orange-dark);font-weight:700;text-decoration:underline}
+
+/* ===== Strip (pink bar) ===== */
+.strip{
+  grid-column:1 / -1;
+  display:flex;align-items:center;justify-content:center;gap:14px;flex-wrap:wrap;
+  background:var(--pink);border-radius:18px;padding:12px 18px;
+}
+.strip h2{font-size:1.15rem}
+
+/* ===== HOME ===== */
+main.home{
+  grid-template-columns:1.3fr 1fr 1fr;
+  grid-template-rows:1.2fr 1fr;
+  gap:90px 18px;
+  align-content:stretch;
+  padding:54px 8px 54px;
+}
+main.home .hero{grid-column:1 / 3;background:var(--pink);border-radius:26px;display:flex;flex-direction:column;justify-content:center;padding:22px 18px}
+main.home .hero h1{grid-column:auto;font-size:3.1rem;line-height:1.1;margin:2px 0 6px}
+main.home .hero p{font-size:1.1rem}
+main.home .hero .tag{font-size:.8rem}
+main.home > .card:nth-of-type(2){grid-column:3;grid-row:1}
+main.home > .card:nth-of-type(3){grid-column:1;grid-row:2}
+main.home > .card:nth-of-type(4){grid-column:2;grid-row:2}
+main.home > .card:nth-of-type(5){grid-column:3;grid-row:2}
+
+/* ===== BREEDS ===== */
+main.breeds{grid-template-columns:repeat(5,1fr);grid-template-rows:auto 1fr auto}
+.breed-grid{grid-column:1 / -1;display:grid;grid-template-columns:repeat(5,1fr);gap:18px;min-height:0}
+.breed-card{overflow:auto}
+.breed-num{display:block;font-size:2rem;font-weight:700;color:var(--orange-dark)}
+.breed-card h2{margin:2px 0 14px}
+.breed-card dt{font-size:.75rem;font-weight:700;text-transform:uppercase;letter-spacing:.5px;color:var(--muted);margin-top:8px}
+.breed-card dd{font-size:.95rem}
+
+/* ===== FOOD ===== */
+main.food{grid-template-columns:repeat(3,1fr);grid-template-rows:auto 1fr auto;gap:18px 18px}
+main.food .card.safe{border-top-color:var(--green)}
+main.food .card.unsafe{border-top-color:var(--red)}
+main.food .card.safe li{color:var(--brown)}
+.mini{background:var(--cream);border-radius:12px;padding:8px 10px;margin-bottom:8px}
+.mini strong{display:block;font-size:.95rem}
+.mini p{font-size:.95rem;line-height:1.35}
+.unsafe ul.plain li{color:var(--brown)}
+
+/* ===== HABITAT ===== */
+main.habitat{
+  grid-template-columns:1.2fr 1fr 1fr;
+  grid-template-rows:auto 1fr 1fr auto;
+}
+main.habitat .cage-card{grid-column:1;grid-row:2 / 4;display:flex;flex-direction:column}
+.cage{
+  flex:1;min-height:260px;margin-top:6px;
+  border:2px solid var(--brown);border-radius:18px;padding:10px;
+  display:grid;gap:8px;
+  grid-template-columns:1fr 1.5fr 1.5fr;
+  grid-template-rows:1fr 1fr 1fr;
+  grid-template-areas:
+    "water wheel wheel"
+    "bed   bed   hide"
+    "food  chew  hide";
+}
+.cage div{
+  background:var(--cream);border:1px dashed var(--brown);border-radius:8px;
+  display:flex;align-items:center;justify-content:center;
+  font-size:.9rem;text-align:center;padding:4px;
+}
+
+/* ===== Footer ===== */
+.site-footer{background:var(--orange);text-align:center;padding:7px 0;flex:0 0 auto}
+.site-footer p{font-size:.95rem;color:var(--brown)}
+
+/* ===== Responsive (phones/tablets) ===== */
+@media (max-width:900px){
+  body.no-scroll{height:auto;overflow:auto}
+  main.fit,main.home,main.breeds,main.food,main.habitat{display:block}
+  main.fit > *{margin-bottom:16px}
+  .breed-grid{grid-template-columns:1fr 1fr}
+  .main-nav ul{gap:16px;flex-wrap:wrap}
+  main.home .hero h1{font-size:2.3rem}
+}
+@media (max-width:560px){ .breed-grid{grid-template-columns:1fr} }
+
+/* ===== Photos ===== */
+.logo img{height:26px;width:auto;display:block}
+.breed-photo{
+  display:block;width:100%;height:120px;
+  object-fit:cover;object-position:center;
+  border-radius:14px;margin-bottom:10px;background:var(--cream);
+}
+
+/* ===================================================== */
+/* ================= ADDED STYLES (NEW) ================ */
+/* ===================================================== */
+
+/* ===== ADDED: Circle logo (bigger) ===== */
+.logo img{
+  width:52px;
+  height:52px;
+  border-radius:50%;
+  object-fit:cover;
+  border:3px solid var(--white);
+  box-shadow:0 2px 6px rgba(0,0,0,.2);
+}
+
+/* ===== ADDED: Home hero picture (circle, beside Welcome) ===== */
+main.home .hero{
+  flex-direction:row;
+  align-items:center;
+  justify-content:space-between;
+  gap:20px;
+}
+.hero-text{flex:1 1 auto;min-width:0}
+.hero-img{
+  width:140px;
+  height:140px;
+  object-fit:cover;
+  border-radius:50%;
+  flex-shrink:0;
+  border:4px solid var(--white);
+  box-shadow:0 4px 10px rgba(0,0,0,.15);
+}
+
+/* ===== ADDED: Contact card links and long text ===== */
+ul.plain a{color:var(--orange-dark);font-weight:700}
+ul.plain li{overflow-wrap:anywhere}
+
+/* ===== ADDED: Hero picture on phones/tablets ===== */
+@media (max-width:900px){
+  main.home .hero{flex-direction:column-reverse;text-align:center}
+  main.home .hero .actions{justify-content:center}
+}
+
+/* ===== ADDED: Hamster Breeds (full photo, NO scrollbar) ===== */
+main.breeds{overflow:hidden}
+.breed-grid{overflow:hidden}
+
+.breed-card{
+  display:flex;
+  flex-direction:column;
+  min-width:0;
+  min-height:0;
+  overflow:hidden;
+  padding:12px 14px;
+  scrollbar-width:none;
+}
+.breed-card::-webkit-scrollbar,
+.breed-grid::-webkit-scrollbar{display:none}
+
+.breed-photo{
+  flex:1 1 0;
+  min-height:70px;
+  max-height:150px;
+  width:100%;
+  height:auto;
+  aspect-ratio:auto;
+  object-fit:contain;
+  background:var(--cream);
+  margin-bottom:6px;
+}
+.breed-num{font-size:1.5rem;line-height:1.1}
+.breed-card h2{font-size:1.05rem;margin:0 0 6px}
+.breed-card dt{font-size:.7rem;margin-top:5px}
+.breed-card dd{font-size:.85rem;line-height:1.3}
+
+.breed-extra{
+  margin-top:auto;
+  padding-top:8px;
+  display:grid;
+  gap:6px;
+}
+.breed-extra .box{
+  background:var(--cream);
+  border-radius:10px;
+  padding:6px 8px;
+  font-size:.8rem;
+  line-height:1.3;
+}
+.breed-extra .box strong{
+  display:block;
+  font-size:.68rem;
+  text-transform:uppercase;
+  letter-spacing:.5px;
+  color:var(--orange-dark);
+  margin-bottom:1px;
+}
+
+/* Keep the 5 columns inside the screen (desktop only) */
+@media (min-width:901px){
+  main.breeds{grid-template-columns:repeat(5,minmax(0,1fr))}
+  .breed-grid{grid-template-columns:repeat(5,minmax(0,1fr))}
+}
+
+/* ===================================================== */
+/* ===== ADDED: New header + Home designs ============== */
+/* ===================================================== */
+
+/* ----- New header ----- */
+.site-header{
+  position:relative;
+  z-index:10;
+  background:linear-gradient(180deg,#F2B068 0%,#E8A04D 100%);
+  box-shadow:0 4px 12px rgba(120,80,30,.15);
+}
+.site-header::after{
+  content:"";
+  position:absolute;
+  left:0;
+  right:0;
+  bottom:-11px;
+  height:12px;
+  background:radial-gradient(circle at 12px 0,#E8A04D 11px,transparent 12px) repeat-x;
+  background-size:24px 12px;
+  pointer-events:none;
+}
+.brand-row{
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  gap:22px;
+  padding:10px 0 10px;
+  border-bottom:1px dashed rgba(255,255,255,.7);
+}
+.logo{gap:12px}
+.logo img{
+  width:64px;
+  height:64px;
+  border:3px solid var(--white);
+  box-shadow:0 0 0 3px rgba(58,36,21,.18),0 4px 10px rgba(0,0,0,.22);
+  background:var(--white);
+}
+.logo-text{display:flex;flex-direction:column;text-align:left;line-height:1.1}
+.logo-text strong{font-size:1.6rem;letter-spacing:3px}
+.logo-text small{
+  font-size:.65rem;
+  font-weight:700;
+  text-transform:uppercase;
+  letter-spacing:1.6px;
+  color:var(--cream);
+  margin-top:3px;
+}
+.paw{font-size:1.4rem;opacity:.5}
+.paw-l{transform:rotate(-20deg)}
+.paw-r{transform:rotate(20deg) scaleX(-1)}
+
+/* pill navigation */
+.main-nav ul{gap:10px;padding:12px 10px 14px}
+.main-nav a,
+.main-nav a:hover,
+.main-nav a[aria-current="page"]{border-bottom-color:transparent}
+.main-nav a{
+  padding:7px 18px;
+  border-radius:999px;
+  transition:background .2s,color .2s,transform .2s;
+}
+.main-nav a:hover{background:rgba(255,255,255,.4);transform:translateY(-1px)}
+.main-nav a[aria-current="page"]{
+  background:var(--brown);
+  color:var(--cream);
+  box-shadow:0 3px 8px rgba(58,36,21,.3);
+}
+
+/* ----- Card polish ----- */
+.card{transition:transform .2s,box-shadow .2s}
+.card:hover{transform:translateY(-3px);box-shadow:0 10px 22px rgba(120,80,30,.18)}
+
+/* ----- Home layout ----- */
+@media (min-width:901px){
+  main.home{
+    grid-template-columns:minmax(0,1.3fr) minmax(0,1fr) minmax(0,1fr);
+  }
+}
+main.home > .card:nth-of-type(2){border-top-color:var(--green)}
+main.home > .card:nth-of-type(3){border-top-color:var(--orange)}
+main.home > .card:nth-of-type(4){border-top-color:var(--pink)}
+main.home > .card:nth-of-type(5){border-top-color:var(--brown)}
+
+/* ----- Home: hero bubbles ----- */
+main.home .hero{position:relative;isolation:isolate}
+main.home .hero::before,
+main.home .hero::after{
+  content:"";
+  position:absolute;
+  border-radius:50%;
+  background:rgba(255,255,255,.35);
+  z-index:-1;
+}
+main.home .hero::before{width:220px;height:220px;right:-50px;top:-70px}
+main.home .hero::after{width:130px;height:130px;left:42%;bottom:-50px;background:rgba(255,255,255,.25)}
+.hero-img{background:var(--white);object-position:center}
+@media (min-width:901px) and (min-height:501px){
+  .hero-img{width:200px;height:200px;margin-right:14px}
+}
+
+/* ----- Home: About stats ----- */
+.stats{
+  display:grid;
+  grid-template-columns:repeat(3,minmax(0,1fr));
+  gap:8px;
+  margin-top:14px;
+}
+.stat{
+  background:var(--cream);
+  border-radius:14px;
+  padding:8px 4px;
+  text-align:center;
+  display:flex;
+  flex-direction:column;
+  align-items:center;
+}
+.stat-ico{font-size:1.4rem;line-height:1.2}
+.stat strong{font-size:1.05rem;color:var(--orange-dark)}
+.stat small{font-size:.7rem;text-transform:uppercase;letter-spacing:.5px;color:var(--muted)}
+
+/* ----- Home: Explore links as tiles ----- */
+ul.links.explore-links{list-style:none;padding-left:0;display:grid;gap:8px;margin-top:4px}
+ul.links.explore-links li{margin:0}
+ul.links.explore-links a{
+  display:flex;
+  align-items:center;
+  gap:10px;
+  padding:11px 14px;
+  background:var(--cream);
+  border-radius:14px;
+  text-decoration:none;
+  color:var(--brown);
+  font-size:1rem;
+  transition:background .2s,transform .2s;
+}
+ul.links.explore-links a:hover{background:var(--pink);transform:translateX(4px)}
+.explore-links .ico{font-size:1.3rem}
+.explore-links .arrow{margin-left:auto;font-weight:700;color:var(--orange-dark)}
+
+/* ----- Home: Created by ----- */
+.creator{display:flex;align-items:center;gap:12px;margin-bottom:8px}
+.creator h2{margin-bottom:0}
+.avatar{
+  width:54px;
+  height:54px;
+  flex-shrink:0;
+  border-radius:50%;
+  background:var(--orange);
+  color:var(--white);
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  font-weight:700;
+  font-size:1.2rem;
+  letter-spacing:1px;
+  border:3px solid var(--pink);
+}
+.paw-row{margin-top:14px;font-size:1.3rem;letter-spacing:6px;opacity:.35}
+
+/* ===================================================== */
+
+/* ===== ADDED: Android fix (address bar does not cut the page) ===== */
+@media (min-width:901px){
+  @supports (height:100dvh){
+    body.no-scroll{height:100dvh}
+  }
+}
+
+/* ===== ADDED: Tablets / small screens (breeds cards) ===== */
+@media (max-width:900px){
+  main.breeds,.breed-grid{overflow:visible}
+  .breed-card{overflow:visible}
+  .breed-photo{
+    flex:none;
+    height:auto;
+    max-height:none;
+    aspect-ratio:4 / 3;
+  }
+}
+
+/* ===== ADDED: Phone in landscape (short screen) ===== */
+@media (orientation:landscape) and (max-height:500px){
+  body.no-scroll{height:auto;min-height:100dvh;overflow:auto}
+  .brand-row{padding:4px 0}
+  .logo img{width:34px;height:34px;border-width:2px}
+  .logo-text strong{font-size:1.1rem;letter-spacing:2px}
+  .logo-text small{display:none}
+  .paw{display:none}
+  .site-header::after{display:none}
+  .main-nav ul{padding:6px 10px;gap:8px}
+  .main-nav a{padding:5px 14px}
+  main.fit{padding:10px 8px}
+  main.home{padding:14px 8px;gap:14px}
+  main.home .hero h1{font-size:2rem}
+  .hero-img{width:100px;height:100px}
+  .breed-grid{grid-template-columns:repeat(3,minmax(0,1fr))}
+  .breed-card{overflow:visible}
+  .breed-photo{
+    flex:none;
+    height:auto;
+    max-height:none;
+    aspect-ratio:4 / 3;
+  }
+}
+
+/* ===== ADDED: Fill empty space in Breeds cards (desktop/laptop) ===== */
+@media (min-width:901px) and (min-height:501px){
+  .breed-card{
+    padding:12px 14px;
+  }
+  .breed-photo{
+    flex:1 1 0;
+    min-height:90px;
+    max-height:none;
+    height:auto;
+    aspect-ratio:auto;
+    object-fit:contain;
+    background:var(--white);
+    margin-bottom:8px;
+  }
+  .breed-extra{
+    margin-top:0;
+    padding-top:10px;
+  }
+}
+
+/* ===== ADDED: Maximize spacing on Home (desktop/laptop) ===== */
+@media (min-width:901px) and (min-height:501px){
+
+  main.home{
+    gap:22px 22px;
+    padding:30px 22px 26px;
+    grid-template-rows:minmax(0,1fr) minmax(0,1fr);
+  }
+
+  main.home .card{
+    padding:clamp(16px,2.4vh,28px) clamp(18px,1.6vw,30px);
+  }
+  main.home > .card:not(.hero){
+    display:flex;
+    flex-direction:column;
+    justify-content:space-between;
+  }
+  main.home .card h2{font-size:clamp(1.3rem,1.5vw,1.8rem);margin-bottom:10px}
+  main.home .card p{font-size:clamp(1rem,1.05vw,1.2rem);line-height:1.6}
+  main.home .tag{font-size:clamp(.75rem,.8vw,.9rem)}
+
+  /* HERO */
+  main.home .hero{padding:clamp(20px,4vh,48px) clamp(24px,3vw,56px)}
+  main.home .hero h1{
+    font-size:clamp(2.6rem,3.7vw,4.6rem);
+    margin:6px 0 10px;
+  }
+  main.home .hero p{font-size:clamp(1.1rem,1.4vw,1.5rem)}
+  main.home .hero .actions{margin-top:clamp(14px,2.6vh,28px);gap:14px}
+  main.home .hero .btn{
+    padding:clamp(10px,1.4vh,15px) clamp(20px,1.8vw,32px);
+    font-size:clamp(1rem,1.1vw,1.2rem);
+  }
+  .hero-img{
+    width:clamp(150px,25vh,330px);
+    height:clamp(150px,25vh,330px);
+    margin-right:clamp(0px,2vw,40px);
+  }
+
+  /* ABOUT */
+  .stats{margin-top:auto;padding-top:14px;gap:12px}
+  .stat{padding:clamp(10px,2vh,24px) 6px;border-radius:18px}
+  .stat-ico{font-size:clamp(1.6rem,2.6vh,2.6rem)}
+  .stat strong{font-size:clamp(1.2rem,1.6vw,1.8rem)}
+  .stat small{font-size:clamp(.72rem,.8vw,.9rem)}
+  .chip{font-size:clamp(.8rem,.85vw,1rem);padding:3px 12px}
+
+  /* EXPLORE */
+  ul.links.explore-links{
+    flex:1;
+    gap:12px;
+    margin-top:10px;
+    grid-auto-rows:minmax(0,1fr);
+  }
+  ul.links.explore-links li{display:flex}
+  ul.links.explore-links a{
+    flex:1;
+    padding:0 clamp(14px,1.4vw,24px);
+    font-size:clamp(1.05rem,1.25vw,1.4rem);
+    border-radius:18px;
+  }
+  .explore-links .ico{font-size:clamp(1.5rem,2vw,2.2rem)}
+  .explore-links .arrow{font-size:1.3rem}
+
+  /* CREATED BY */
+  .creator{gap:16px;margin-bottom:0}
+  .avatar{
+    width:clamp(56px,7vh,84px);
+    height:clamp(56px,7vh,84px);
+    font-size:clamp(1.3rem,1.8vw,2rem);
+  }
+  main.home > .card:nth-of-type(4) p{margin:auto 0;padding:10px 0}
+  .paw-row{
+    margin-top:0;
+    text-align:center;
+    font-size:clamp(1.6rem,3vh,2.6rem);
+    letter-spacing:clamp(10px,1.2vw,22px);
+    opacity:.5;
+  }
+
+  /* CONTACT */
+  #contact ul.plain{
+    flex:1;
+    display:flex;
+    flex-direction:column;
+    justify-content:space-evenly;
+    margin:6px 0;
+  }
+  #contact ul.plain li{font-size:clamp(1rem,1.1vw,1.25rem);margin:0}
+  #contact .actions{margin-top:0}
+  #contact .btn{
+    padding:clamp(10px,1.4vh,15px) clamp(20px,1.8vw,32px);
+    font-size:clamp(1rem,1.1vw,1.2rem);
+  }
+}
+
+/* ===================================================== */
+/* ===== ADDED: Food Guide + Habitat & Care ============ */
+/* ===================================================== */
+.pill-list{list-style:none;display:flex;flex-wrap:wrap;gap:8px;margin:6px 0 10px}
+.pill-list li{
+  padding:6px 12px;
+  border-radius:999px;
+  background:var(--cream);
+  border:1.5px solid var(--green);
+  font-size:.92rem;
+  font-weight:700;
+}
+.unsafe .pill-list li{border-color:var(--red)}
+.card-note{font-size:.85rem;color:var(--muted);line-height:1.4}
+.cage-caption{font-size:.9rem;color:var(--muted);margin-bottom:6px}
+
+main.food .card{display:flex;flex-direction:column}
+main.food .card .card-note{margin-top:auto}
+main.food .card .mini:last-child{margin-bottom:0}
+
+main.habitat .card:not(.cage-card){
+  display:flex;
+  flex-direction:column;
+  justify-content:flex-start;
+}
+
+@media (min-width:901px) and (min-height:501px){
+  main.food,
+  main.habitat{
+    padding:20px 22px 24px;
+    gap:20px;
+  }
+  main.food h1,
+  main.habitat h1{font-size:clamp(1.8rem,2.2vw,2.6rem)}
+
+  main.food .card,
+  main.habitat .card{
+    padding:clamp(14px,2.2vh,26px) clamp(18px,1.6vw,30px);
+  }
+  main.food .card h2,
+  main.habitat .card h2{font-size:clamp(1.25rem,1.5vw,1.7rem)}
+
+  .pill-list{gap:10px}
+  .pill-list li{
+    padding:clamp(6px,1vh,10px) clamp(12px,1vw,18px);
+    font-size:clamp(.9rem,1vw,1.15rem);
+  }
+  .card-note{font-size:clamp(.85rem,.9vw,1.05rem)}
+
+  main.food .mini{
+    flex:1;
+    display:flex;
+    flex-direction:column;
+    justify-content:center;
+    padding:clamp(8px,1.4vh,16px) 14px;
+    margin-bottom:10px;
+  }
+  main.food .mini strong{font-size:clamp(.95rem,1.1vw,1.25rem);color:var(--orange-dark)}
+  main.food .mini p{font-size:clamp(.9rem,1vw,1.15rem);line-height:1.4}
+
+  main.habitat .card:not(.cage-card) p{
+    font-size:clamp(.95rem,1.05vw,1.2rem);
+    line-height:1.6;
+  }
+  .cage{gap:10px;padding:12px}
+  .cage div{font-size:clamp(.9rem,1.05vw,1.2rem);font-weight:700}
+}
+
+/* ===================================================== */
+/* ===== ADDED: NO SCROLL - everything fits the screen == */
+/* ===================================================== */
+@media (min-width:901px) and (min-height:501px){
+
+  /* header uses less height so the cards have room */
+  .brand-row{padding:6px 0 8px}
+  .logo img{
+    width:clamp(44px,7vh,64px);
+    height:clamp(44px,7vh,64px);
+  }
+  .main-nav ul{padding:8px 10px 14px}
+  .main-nav a{padding:clamp(5px,.9vh,8px) 18px}
+  .site-footer{padding:6px 0}
+
+  /* Hamster Breeds: sizes follow the screen height */
+  main.breeds{
+    padding:clamp(12px,2.4vh,24px) 18px clamp(8px,1.6vh,16px);
+    gap:clamp(8px,1.6vh,16px);
+  }
+  main.breeds h1{
+    font-size:clamp(1.4rem,3.6vh,2.2rem);
+    line-height:1.1;
+  }
+  .breed-grid{gap:clamp(10px,1.6vw,18px)}
+  .breed-card{padding:clamp(8px,1.4vh,14px) clamp(10px,1vw,16px)}
+  .breed-photo{min-height:60px;margin-bottom:clamp(4px,.8vh,8px)}
+  .breed-num{font-size:clamp(1.2rem,3vh,1.8rem)}
+  .breed-card h2{font-size:clamp(.95rem,2vh,1.2rem);margin-bottom:4px}
+  .breed-card dt{font-size:clamp(.6rem,1.15vh,.75rem);margin-top:clamp(2px,.8vh,7px)}
+  .breed-card dd{font-size:clamp(.75rem,1.6vh,.95rem);line-height:1.25}
+  .breed-extra{gap:clamp(4px,.8vh,8px);padding-top:clamp(4px,1vh,10px)}
+  .breed-extra .box{font-size:clamp(.68rem,1.4vh,.85rem);padding:clamp(4px,.8vh,8px) 8px}
+  .strip{padding:clamp(6px,1.2vh,12px) 18px}
+
+  /* Food + Habitat: stay inside the screen */
+  main.food,
+  main.habitat{overflow:hidden}
+}
+
+/* short laptop screens: hide the 2nd tip so nothing gets cut */
+@media (min-width:901px) and (min-height:501px) and (max-height:800px){
+  .breed-extra .box:last-child{display:none}
+  .paw{display:none}
+}
+
+/* ===================================================== */
+/* ===== ADDED: Dotted background on ALL pages ========= */
+/* ===================================================== */
+main.fit{
+  background-image:radial-gradient(rgba(232,160,77,.22) 2px,transparent 2px);
+  background-size:26px 26px;
+}
+/* ===================================================== */
+/* ===== ADDED: Contact pop-up (CSS only) ============== */
+/* ===================================================== */
+.modal-bg{
+  position:fixed;inset:0;z-index:1000;
+  display:none;align-items:center;justify-content:center;
+  padding:16px;background:rgba(58,36,21,.55);
+}
+.modal-bg:target{display:flex}
+.modal-bg .modal-close-bg{position:absolute;inset:0;cursor:default}
+.modal{
+  position:relative;width:100%;max-width:440px;max-height:92vh;overflow:auto;
+  background:var(--white);border-top:6px solid var(--orange);
+  border-radius:22px;padding:22px 22px 20px;
+  box-shadow:0 20px 50px rgba(58,36,21,.35);
+}
+.modal h2{font-size:1.4rem;margin-bottom:4px}
+.modal .sub{font-size:.95rem;color:var(--muted);margin-bottom:14px;line-height:1.4}
+.modal-x{
+  position:absolute;top:10px;right:12px;width:34px;height:34px;
+  display:flex;align-items:center;justify-content:center;
+  border-radius:50%;background:var(--cream);color:var(--brown);
+  font-size:1.3rem;font-weight:700;text-decoration:none;
+}
+.modal-x:hover{background:var(--pink)}
+.modal label{display:block;font-size:.75rem;font-weight:700;text-transform:uppercase;letter-spacing:.5px;color:var(--muted);margin:10px 0 4px}
+.modal input[type="text"],
+.modal input[type="email"],
+.modal textarea{
+  width:100%;padding:10px 12px;border:1.5px solid var(--orange);
+  border-radius:12px;background:var(--cream);color:var(--brown);
+  font:inherit;font-size:1rem;
+}
+.modal textarea{min-height:110px;resize:vertical}
+.modal input:focus,
+.modal textarea:focus{outline:2px solid var(--brown);outline-offset:1px}
+.modal .btn{cursor:pointer;font-family:inherit}
+.modal .done{text-align:center;padding:10px 0 4px}
+.modal .done .big{font-size:3rem;line-height:1}
+.modal .done h2{margin:10px 0 6px}
+.modal .done .actions{justify-content:center}
+
+/* ===================================================== */
+/* ===== ADDED: Hamster badge on "Message sent" ======== */
+/* ===================================================== */
+.modal .done .hamster{
+  width:86px;height:86px;margin:0 auto 6px;
+  border-radius:50%;background:var(--cream);
+  border:4px solid var(--pink);
+  display:flex;align-items:center;justify-content:center;
+  font-size:2.6rem;line-height:1;
+}
