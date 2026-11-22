@@ -9,22 +9,21 @@
 <body class="no-scroll">
 
   <header class="site-header">
-    <div class="brand-row">
-      <span class="paw paw-l" aria-hidden="true">🐾</span>
+    <div class="topbar-inner">
       <a class="logo" href="index.html">
         <img src="logo.png" alt="HAMVEN logo" onerror="this.style.display='none'">
-        <span class="logo-text"><strong>HAMVEN</strong><small>Hamster Care Guide</small></span>
+        <span class="logo-text"><strong>HAMVEN</strong></span>
       </a>
-      <span class="paw paw-r" aria-hidden="true">🐾</span>
+      <nav class="main-nav" aria-label="Main navigation">
+        <ul>
+          <li><a class="c-home" href="index.html"><span class="n-ico" aria-hidden="true">🏠</span><span class="n-txt">Home</span></a></li>
+          <li><a class="c-about" href="about.html"><span class="n-ico" aria-hidden="true">💡</span><span class="n-txt">About</span></a></li>
+          <li><a class="c-breeds" href="hamstersbreeds.html"><span class="n-ico" aria-hidden="true">🐹</span><span class="n-txt">Hamster Breeds</span></a></li>
+          <li><a class="c-food" href="foodguide.html" aria-current="page"><span class="n-ico" aria-hidden="true">🥜</span><span class="n-txt">Food Guide</span></a></li>
+          <li><a class="c-habitat" href="habitatandcare.html"><span class="n-ico" aria-hidden="true">🏡</span><span class="n-txt">Habitat &amp; Care</span></a></li>
+        </ul>
+      </nav>
     </div>
-    <nav class="main-nav" aria-label="Main navigation">
-      <ul>
-        <li><a href="index.html">Home</a></li>
-        <li><a href="hamstersbreeds.html">Hamster Breeds</a></li>
-        <li><a href="foodguide.html" aria-current="page">Food Guide</a></li>
-        <li><a href="habitatandcare.html">Habitat &amp; Care</a></li>
-      </ul>
-    </nav>
   </header>
 
   <main class="container fit food">
@@ -43,6 +42,7 @@
         <li>🌾 Plain oats</li>
         <li>🐛 Dried mealworms</li>
       </ul>
+      <div class="deco bob" aria-hidden="true"><span style="--i:0">🥕</span><span style="--i:1">🥦</span><span style="--i:2">🍎</span><span style="--i:3">🍓</span><span style="--i:4">🌾</span></div>
       <p class="card-note">Offer fresh foods in small pieces and only in moderation.</p>
     </section>
 
@@ -59,41 +59,173 @@
         <li>🍎 Apple seeds</li>
         <li>🧂 Salty snacks</li>
       </ul>
+      <div class="deco pulse" aria-hidden="true"><span style="--i:0">⚠️</span><span style="--i:1">🚫</span><span style="--i:2">🍫</span><span style="--i:3">⛔</span><span style="--i:4">⚠️</span></div>
       <p class="card-note">When unsure about a food, do not feed it. Ask first.</p>
     </section>
 
-    <section class="card">
+    <section class="card tips">
       <span class="tag">Every day</span>
       <h2>🍽️ Feeding Tips</h2>
       <div class="mini">
-        <strong>Daily staple</strong>
+        <strong>🌾 Daily staple</strong>
         <p>Quality hamster seed or pellet mix, about 1–2 tablespoons for Syrians and less for dwarfs.</p>
       </div>
       <div class="mini">
-        <strong>Fresh treats</strong>
+        <strong>🥦 Fresh treats</strong>
         <p>A small piece of veggie 2–3 times a week. Remove leftovers after a day.</p>
       </div>
       <div class="mini">
-        <strong>Fresh water</strong>
+        <strong>💧 Fresh water</strong>
         <p>Change it every day, using a bottle with a metal spout.</p>
       </div>
       <div class="mini">
-        <strong>Food stash</strong>
+        <strong>🌰 Food stash</strong>
         <p>Hamsters hoard food, so check their hideout and remove anything spoiled.</p>
       </div>
     </section>
 
-    <div class="strip">
-      <h2>Not sure if a food is safe?</h2>
-      <a class="btn" href="index.html#contact">Ask for guidance</a>
-    </div>
   </main>
 
+  <div class="hamster-track" aria-hidden="true"><div class="hv hv-carry"><span class="item">🥕</span><span class="flip"><span class="h"><svg class="hamster-svg" viewBox="0 0 48 36" aria-hidden="true">
+  <circle cx="7" cy="24" r="2.2" fill="#D9955A"/>
+  <ellipse class="leg b" cx="14" cy="32" rx="3.4" ry="2.6" fill="#F0B3B3"/>
+  <ellipse cx="22" cy="22" rx="15" ry="11" fill="#E8B26A"/>
+  <ellipse cx="24" cy="26" rx="10" ry="6" fill="#FFF1DC"/>
+  <ellipse class="leg" cx="29" cy="32" rx="3.4" ry="2.6" fill="#F0B3B3"/>
+  <circle cx="36" cy="19" r="8" fill="#E8B26A"/>
+  <circle cx="33" cy="11.5" r="3.6" fill="#E8B26A"/>
+  <circle cx="33" cy="11.5" r="1.9" fill="#F0B3B3"/>
+  <circle cx="38" cy="22.5" r="2" fill="#F0B3B3" opacity=".75"/>
+  <circle cx="39.5" cy="17" r="1.3" fill="#3A2415"/>
+  <circle cx="43.5" cy="20" r="1.5" fill="#E0607E"/>
+</svg></span></span></div></div>
   <footer class="site-footer">
     <div class="container">
       <p>&copy; HAMVEN | Created by MISHIGEL BARLONGO</p>
     </div>
   </footer>
+
+  <!-- Message pop-up -->
+  <div class="modal-bg" id="message">
+    <a class="modal-close-bg" href="#" aria-label="Close"></a>
+    <div class="modal" role="dialog" aria-labelledby="msg-title">
+      <a class="modal-x" href="#" aria-label="Close">&times;</a>
+      <span class="tag">Need guidance?</span>
+      <h2 id="msg-title">Send a Message</h2>
+      <p class="sub">Tell me your concern about your hamster and I will reply to your email.</p>
+
+      <form id="msg-form" action="https://formsubmit.co/mishigelb@gmail.com" method="POST">
+        <label for="f-name">Your name</label>
+        <input id="f-name" type="text" name="name" maxlength="60" required>
+
+        <label for="f-email">Your email</label>
+        <input id="f-email" type="email" name="email" maxlength="80" required>
+
+        <label for="f-msg">Your concern</label>
+        <textarea id="f-msg" name="message" maxlength="1000" required></textarea>
+
+        <input type="hidden" name="_subject" value="HAMVEN concern">
+        <input type="hidden" name="_captcha" value="false">
+        <input type="hidden" name="_next" value="">
+        <input type="text" name="_honey" style="display:none" tabindex="-1" autocomplete="off">
+
+        <div class="actions">
+          <button class="btn" type="submit">Send</button>
+          <a class="btn btn-light" href="#">Cancel</a>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <!-- Message sent pop-up -->
+  <div class="modal-bg" id="sent">
+    <a class="modal-close-bg" href="#" aria-label="Close"></a>
+    <div class="modal" role="dialog" aria-labelledby="sent-title">
+      <div class="done">
+        <div class="hamster" aria-hidden="true">&#10003;</div>
+        <h2 id="sent-title">Done fill up!</h2>
+        <p class="sub">Your message was sent successfully.</p>
+        <a class="btn btn-full" href="#">OK</a>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    (function () {
+      var form = document.getElementById('msg-form');
+      if (!form) return;
+      form.addEventListener('submit', function (e) {
+        e.preventDefault();
+        var data = new FormData(form);
+        // show "Done fill up!" right away - no loading
+        location.hash = 'sent';
+        form.reset();
+        // send the message quietly in the background
+        try {
+          fetch('https://formsubmit.co/ajax/mishigelb@gmail.com', {
+            method: 'POST',
+            headers: { 'Accept': 'application/json' },
+            body: data,
+            keepalive: true
+          }).catch(function () {});
+        } catch (err) {}
+      });
+    })();
+  </script>
+
+  <!-- Background music (keeps playing across pages) -->
+  <audio id="bgm" src="backgroundmusic.mp3" loop preload="auto"></audio>
+  <button id="music-btn" class="music-btn" type="button" aria-label="Music on/off" title="Music on/off">🔊</button>
+  <script>
+    (function () {
+      var a = document.getElementById('bgm');
+      var btn = document.getElementById('music-btn');
+      if (!a) return;
+      var K_T = 'hv-music-t', K_AT = 'hv-music-at', K_M = 'hv-music-muted';
+      function get(k) { try { return sessionStorage.getItem(k); } catch (e) { return null; } }
+      function set(k, v) { try { sessionStorage.setItem(k, v); } catch (e) {} }
+
+      a.volume = 0.5;
+      a.muted = get(K_M) === '1';
+      function icon() { btn.textContent = a.muted ? '🔇' : '🔊'; btn.classList.toggle('playing', !a.paused && !a.muted); }
+
+      // continue from where the previous page stopped
+      var t = parseFloat(get(K_T)) || 0;
+      var at = parseFloat(get(K_AT)) || 0;
+      if (t > 0 && at > 0) t += (Date.now() - at) / 1000;
+      function seek() {
+        if (t > 0 && isFinite(a.duration) && a.duration > 0) { try { a.currentTime = t % a.duration; } catch (e) {} }
+        t = 0;
+      }
+      if (a.readyState >= 1) seek(); else a.addEventListener('loadedmetadata', seek, { once: true });
+
+      function save() { if (!a.paused) { set(K_T, a.currentTime); set(K_AT, Date.now()); } }
+      setInterval(save, 500);
+      window.addEventListener('pagehide', save);
+      window.addEventListener('beforeunload', save);
+
+      // browsers may block autoplay: start on the first click / tap / key press
+      var events = ['pointerdown', 'keydown', 'touchstart', 'click'];
+      function arm() { events.forEach(function (ev) { window.addEventListener(ev, onGesture, true); }); }
+      function disarm() { events.forEach(function (ev) { window.removeEventListener(ev, onGesture, true); }); }
+      function onGesture() { disarm(); start(); }
+      function start() {
+        var p = a.play();
+        if (p && p.catch) p.catch(function () { arm(); });
+      }
+      a.addEventListener('play', icon);
+      a.addEventListener('pause', icon);
+      btn.addEventListener('click', function (e) {
+        e.stopPropagation();
+        a.muted = !a.muted;
+        set(K_M, a.muted ? '1' : '0');
+        if (a.paused) start();
+        icon();
+      });
+      icon();
+      start();
+    })();
+  </script>
 
 </body>
 </html>

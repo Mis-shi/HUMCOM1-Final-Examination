@@ -1,771 +1,592 @@
 /* ===== HAMVEN stylesheet ===== */
-:root{
-  --orange:#E8A04D;
-  --orange-dark:#B5651D;
-  --cream:#FFF6EA;
-  --pink:#F0B3B3;
-  --brown:#3A2415;
-  --muted:#6B5A4A;
-  --green:#7AA45A;
-  --red:#D9455A;
-  --white:#ffffff;
-}
+:root{--orange:#E8A04D;--orange-dark:#B5651D;--accent:#A8527B;--cream:#FFF6EA;--pink:#F0B3B3;--brown:#3A2415;--muted:#6B5A4A;--green:#7AA45A;--red:#D9455A;--white:#ffffff}
 *{box-sizing:border-box;margin:0;padding:0}
 html,body{height:100%}
-body{
-  font-family:"Trebuchet MS","Segoe UI",Arial,sans-serif;
-  background:var(--cream);
-  color:var(--brown);
-  display:flex;
-  flex-direction:column;
-  min-height:100vh;
-}
+body{font-family:"Trebuchet MS","Segoe UI",Arial,sans-serif;background:var(--cream);color:var(--brown);display:flex;flex-direction:column;min-height:100vh}
 body.no-scroll{height:100vh;overflow:hidden}
 
-/* ===== Header ===== */
-.site-header{background:var(--orange);flex:0 0 auto}
-.brand-row{text-align:center;padding:8px 0 10px;border-bottom:1px solid rgba(255,255,255,.85)}
-.logo{display:inline-flex;align-items:center;gap:8px;font-size:1.2rem;font-weight:700;letter-spacing:.5px;color:var(--brown);text-decoration:none}
-.main-nav ul{list-style:none;display:flex;justify-content:center;gap:36px;padding:14px 10px 10px}
-.main-nav a{
-  display:inline-block;padding-bottom:4px;
-  font-size:.95rem;font-weight:700;text-transform:uppercase;
-  color:var(--brown);text-decoration:none;
-  border-bottom:2px solid transparent;
-}
-.main-nav a:hover{border-bottom-color:var(--brown)}
-.main-nav a[aria-current="page"]{border-bottom-color:var(--brown)}
-.main-nav a:focus-visible{outline:2px solid var(--brown);outline-offset:3px;border-radius:4px}
+/* ===== Page colors ===== */
+.c-home{--c:#3A2415;--bg:#EADBC8}
+.c-breeds{--c:#E0607E;--bg:#FDE1E8}
+.c-food{--c:#5E9A3F;--bg:#E2F0D8}
+.c-habitat{--c:#3E86C6;--bg:#DCEBF8}
+.c-about{--c:#8E6BBF;--bg:#EEE6F8}
+.c-lilac{--c:#B68AD6;--bg:#F4EAFB}
+.c-blue{--c:#3E86C6;--bg:#E6F1FB}
+.c-green{--c:#5E9A3F;--bg:#EAF5E2}
+.c-rose{--c:#E0607E;--bg:#FDEAEF}
+.c-purple{--c:#8E6BBF;--bg:#F0E9F8}
+
+/* ===== TOP NAVIGATION ===== */
+.site-header{flex:0 0 auto;position:sticky;top:0;z-index:50;background:linear-gradient(180deg,#F2B068 0%,#E8A04D 100%);box-shadow:0 4px 12px rgba(120,80,30,.18)}
+.topbar-inner{display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:8px 20px;padding:8px clamp(12px,2vw,28px)}
+.logo{display:inline-flex;align-items:center;gap:20px;color:var(--brown);text-decoration:none}
+.logo img{width:clamp(52px,8.5vh,72px);height:clamp(52px,8.5vh,72px);border-radius:50%;object-fit:cover;background:var(--white);border:4px solid var(--white);box-shadow:0 0 0 7px rgba(150,95,40,.35),0 4px 10px rgba(0,0,0,.2);margin:7px}
+.logo-text{display:flex;flex-direction:column;line-height:1.1}
+.logo-text strong{font-family:"Josefin Sans","Century Gothic","Futura","Trebuchet MS",sans-serif;font-size:clamp(1.8rem,2.6vw,2.4rem);font-weight:600;letter-spacing:.22em}
+.logo-text small{font-size:.62rem;font-weight:700;text-transform:uppercase;letter-spacing:1.6px;color:var(--cream);margin-top:3px}
+.main-nav ul{list-style:none;display:flex;flex-wrap:wrap;justify-content:flex-end;gap:8px}
+.main-nav a{display:flex;align-items:center;gap:8px;padding:5px 16px 5px 5px;border-radius:999px;background:rgba(255,255,255,.9);color:var(--brown);font-size:.9rem;font-weight:700;text-decoration:none;box-shadow:0 2px 5px rgba(58,36,21,.14);transition:background .2s,color .2s,transform .2s}
+.n-ico{width:30px;height:30px;flex-shrink:0;border-radius:50%;background:var(--bg);display:flex;align-items:center;justify-content:center;font-size:1rem;line-height:1}
+.main-nav a:hover{background:var(--bg);transform:translateY(-2px)}
+.main-nav a[aria-current="page"]{background:var(--c);color:var(--white);box-shadow:0 3px 8px rgba(58,36,21,.3)}
+.main-nav a[aria-current="page"] .n-ico{background:rgba(255,255,255,.28)}
+.main-nav a:focus-visible{outline:2px solid var(--brown);outline-offset:3px}
 
 /* ===== Layout ===== */
 .container{width:100%}
-main.fit{flex:1 1 auto;min-height:0;display:grid;gap:18px;padding:14px 8px 14px;align-content:stretch}
+main.fit{flex:1 1 auto;min-height:0;display:grid;gap:18px;padding:14px 8px 14px;align-content:stretch;background-image:radial-gradient(rgba(224,96,126,.16) 2px,transparent 2px);background-size:26px 26px}
 main h1{grid-column:1 / -1;font-size:1.9rem;color:var(--brown)}
 
 /* ===== Cards ===== */
-.card{
-  background:var(--white);
-  border-top:6px solid var(--orange);
-  border-radius:22px;
-  padding:16px 18px;
-  box-shadow:0 6px 16px rgba(120,80,30,.12);
-  overflow:hidden;
-  min-height:0;
-}
+.card{background:var(--white);border-top:6px solid var(--c,var(--pink));border-radius:22px;padding:16px 18px;box-shadow:0 6px 16px rgba(120,80,30,.12);overflow:hidden;min-height:0;transition:transform .2s,box-shadow .2s}
+.card:hover{transform:translateY(-3px);box-shadow:0 10px 22px rgba(120,80,30,.18)}
 .card h2{font-size:1.25rem;margin-bottom:8px;color:var(--brown)}
 .card p{font-size:.95rem;line-height:1.55}
-.tag{
-  display:block;font-size:.75rem;font-weight:700;
-  text-transform:uppercase;letter-spacing:.6px;color:var(--muted);margin-bottom:2px
-}
+.tag{display:block;font-size:.75rem;font-weight:700;text-transform:uppercase;letter-spacing:.6px;color:var(--muted);margin-bottom:2px}
 
-/* ===== Buttons / chips ===== */
+/* ===== Buttons ===== */
 .actions{display:flex;gap:12px;margin-top:14px;flex-wrap:wrap}
-.btn{
-  display:inline-block;padding:9px 18px;border-radius:999px;
-  background:var(--brown);color:var(--white);
-  font-weight:700;font-size:1rem;text-decoration:none;
-  border:1px solid var(--brown);
-}
+.btn{display:inline-block;padding:9px 18px;border-radius:999px;background:var(--brown);color:var(--white);font-weight:700;font-size:1rem;text-decoration:none;border:1px solid var(--brown)}
 .btn:hover{opacity:.88}
 .btn-light{background:var(--white);color:var(--brown)}
-.chip{
-  display:inline-block;margin:6px 6px 0 0;padding:2px 10px;
-  border:1px solid var(--orange);border-radius:999px;
-  font-size:.8rem;color:var(--brown);background:var(--white)
-}
-.strip .chip{margin:0}
 ul.plain{list-style:none}
-ul.plain li{margin:7px 0;font-size:.95rem}
-ul.links{padding-left:20px}
-ul.links li{margin:8px 0}
-ul.links a{color:var(--orange-dark);font-weight:700;text-decoration:underline}
-
-/* ===== Strip (pink bar) ===== */
-.strip{
-  grid-column:1 / -1;
-  display:flex;align-items:center;justify-content:center;gap:14px;flex-wrap:wrap;
-  background:var(--pink);border-radius:18px;padding:12px 18px;
-}
+ul.plain li{margin:7px 0;font-size:.95rem;overflow-wrap:anywhere}
+ul.plain a{color:var(--accent);font-weight:700}
+.strip{grid-column:1 / -1;display:flex;align-items:center;justify-content:center;gap:14px;flex-wrap:wrap;background:var(--pink);border-radius:18px;padding:12px 18px}
 .strip h2{font-size:1.15rem}
 
 /* ===== HOME ===== */
-main.home{
-  grid-template-columns:1.3fr 1fr 1fr;
-  grid-template-rows:1.2fr 1fr;
-  gap:90px 18px;
-  align-content:stretch;
-  padding:54px 8px 54px;
-}
-main.home .hero{grid-column:1 / 3;background:var(--pink);border-radius:26px;display:flex;flex-direction:column;justify-content:center;padding:22px 18px}
+main.home{grid-template-columns:minmax(0,1.3fr) minmax(0,1fr) minmax(0,1fr);grid-template-rows:1.2fr 1fr;gap:22px;align-content:stretch;padding:30px 22px 26px}
+main.home .hero{grid-column:1 / 3;background:var(--pink);border-radius:26px;display:flex;flex-direction:row;align-items:center;justify-content:space-between;gap:20px;padding:22px 18px;position:relative;isolation:isolate}
 main.home .hero h1{grid-column:auto;font-size:3.1rem;line-height:1.1;margin:2px 0 6px}
 main.home .hero p{font-size:1.1rem}
 main.home .hero .tag{font-size:.8rem}
-main.home > .card:nth-of-type(2){grid-column:3;grid-row:1}
-main.home > .card:nth-of-type(3){grid-column:1;grid-row:2}
-main.home > .card:nth-of-type(4){grid-column:2;grid-row:2}
-main.home > .card:nth-of-type(5){grid-column:3;grid-row:2}
-
-/* ===== BREEDS ===== */
-main.breeds{grid-template-columns:repeat(5,1fr);grid-template-rows:auto 1fr auto}
-.breed-grid{grid-column:1 / -1;display:grid;grid-template-columns:repeat(5,1fr);gap:18px;min-height:0}
-.breed-card{overflow:auto}
-.breed-num{display:block;font-size:2rem;font-weight:700;color:var(--orange-dark)}
-.breed-card h2{margin:2px 0 14px}
-.breed-card dt{font-size:.75rem;font-weight:700;text-transform:uppercase;letter-spacing:.5px;color:var(--muted);margin-top:8px}
-.breed-card dd{font-size:.95rem}
-
-/* ===== FOOD ===== */
-main.food{grid-template-columns:repeat(3,1fr);grid-template-rows:auto 1fr auto;gap:18px 18px}
-main.food .card.safe{border-top-color:var(--green)}
-main.food .card.unsafe{border-top-color:var(--red)}
-main.food .card.safe li{color:var(--brown)}
-.mini{background:var(--cream);border-radius:12px;padding:8px 10px;margin-bottom:8px}
-.mini strong{display:block;font-size:.95rem}
-.mini p{font-size:.95rem;line-height:1.35}
-.unsafe ul.plain li{color:var(--brown)}
-
-/* ===== HABITAT ===== */
-main.habitat{
-  grid-template-columns:1.2fr 1fr 1fr;
-  grid-template-rows:auto 1fr 1fr auto;
-}
-main.habitat .cage-card{grid-column:1;grid-row:2 / 4;display:flex;flex-direction:column}
-.cage{
-  flex:1;min-height:260px;margin-top:6px;
-  border:2px solid var(--brown);border-radius:18px;padding:10px;
-  display:grid;gap:8px;
-  grid-template-columns:1fr 1.5fr 1.5fr;
-  grid-template-rows:1fr 1fr 1fr;
-  grid-template-areas:
-    "water wheel wheel"
-    "bed   bed   hide"
-    "food  chew  hide";
-}
-.cage div{
-  background:var(--cream);border:1px dashed var(--brown);border-radius:8px;
-  display:flex;align-items:center;justify-content:center;
-  font-size:.9rem;text-align:center;padding:4px;
-}
-
-/* ===== Footer ===== */
-.site-footer{background:var(--orange);text-align:center;padding:7px 0;flex:0 0 auto}
-.site-footer p{font-size:.95rem;color:var(--brown)}
-
-/* ===== Responsive (phones/tablets) ===== */
-@media (max-width:900px){
-  body.no-scroll{height:auto;overflow:auto}
-  main.fit,main.home,main.breeds,main.food,main.habitat{display:block}
-  main.fit > *{margin-bottom:16px}
-  .breed-grid{grid-template-columns:1fr 1fr}
-  .main-nav ul{gap:16px;flex-wrap:wrap}
-  main.home .hero h1{font-size:2.3rem}
-}
-@media (max-width:560px){ .breed-grid{grid-template-columns:1fr} }
-
-/* ===== Photos ===== */
-.logo img{height:26px;width:auto;display:block}
-.breed-photo{
-  display:block;width:100%;height:120px;
-  object-fit:cover;object-position:center;
-  border-radius:14px;margin-bottom:10px;background:var(--cream);
-}
-
-/* ===================================================== */
-/* ================= ADDED STYLES (NEW) ================ */
-/* ===================================================== */
-
-/* ===== ADDED: Circle logo (bigger) ===== */
-.logo img{
-  width:52px;
-  height:52px;
-  border-radius:50%;
-  object-fit:cover;
-  border:3px solid var(--white);
-  box-shadow:0 2px 6px rgba(0,0,0,.2);
-}
-
-/* ===== ADDED: Home hero picture (circle, beside Welcome) ===== */
-main.home .hero{
-  flex-direction:row;
-  align-items:center;
-  justify-content:space-between;
-  gap:20px;
-}
-.hero-text{flex:1 1 auto;min-width:0}
-.hero-img{
-  width:140px;
-  height:140px;
-  object-fit:cover;
-  border-radius:50%;
-  flex-shrink:0;
-  border:4px solid var(--white);
-  box-shadow:0 4px 10px rgba(0,0,0,.15);
-}
-
-/* ===== ADDED: Contact card links and long text ===== */
-ul.plain a{color:var(--orange-dark);font-weight:700}
-ul.plain li{overflow-wrap:anywhere}
-
-/* ===== ADDED: Hero picture on phones/tablets ===== */
-@media (max-width:900px){
-  main.home .hero{flex-direction:column-reverse;text-align:center}
-  main.home .hero .actions{justify-content:center}
-}
-
-/* ===== ADDED: Hamster Breeds (full photo, NO scrollbar) ===== */
-main.breeds{overflow:hidden}
-.breed-grid{overflow:hidden}
-
-.breed-card{
-  display:flex;
-  flex-direction:column;
-  min-width:0;
-  min-height:0;
-  overflow:hidden;
-  padding:12px 14px;
-  scrollbar-width:none;
-}
-.breed-card::-webkit-scrollbar,
-.breed-grid::-webkit-scrollbar{display:none}
-
-.breed-photo{
-  flex:1 1 0;
-  min-height:70px;
-  max-height:150px;
-  width:100%;
-  height:auto;
-  aspect-ratio:auto;
-  object-fit:contain;
-  background:var(--cream);
-  margin-bottom:6px;
-}
-.breed-num{font-size:1.5rem;line-height:1.1}
-.breed-card h2{font-size:1.05rem;margin:0 0 6px}
-.breed-card dt{font-size:.7rem;margin-top:5px}
-.breed-card dd{font-size:.85rem;line-height:1.3}
-
-.breed-extra{
-  margin-top:auto;
-  padding-top:8px;
-  display:grid;
-  gap:6px;
-}
-.breed-extra .box{
-  background:var(--cream);
-  border-radius:10px;
-  padding:6px 8px;
-  font-size:.8rem;
-  line-height:1.3;
-}
-.breed-extra .box strong{
-  display:block;
-  font-size:.68rem;
-  text-transform:uppercase;
-  letter-spacing:.5px;
-  color:var(--orange-dark);
-  margin-bottom:1px;
-}
-
-/* Keep the 5 columns inside the screen (desktop only) */
-@media (min-width:901px){
-  main.breeds{grid-template-columns:repeat(5,minmax(0,1fr))}
-  .breed-grid{grid-template-columns:repeat(5,minmax(0,1fr))}
-}
-
-/* ===================================================== */
-/* ===== ADDED: New header + Home designs ============== */
-/* ===================================================== */
-
-/* ----- New header ----- */
-.site-header{
-  position:relative;
-  z-index:10;
-  background:linear-gradient(180deg,#F2B068 0%,#E8A04D 100%);
-  box-shadow:0 4px 12px rgba(120,80,30,.15);
-}
-.site-header::after{
-  content:"";
-  position:absolute;
-  left:0;
-  right:0;
-  bottom:-11px;
-  height:12px;
-  background:radial-gradient(circle at 12px 0,#E8A04D 11px,transparent 12px) repeat-x;
-  background-size:24px 12px;
-  pointer-events:none;
-}
-.brand-row{
-  display:flex;
-  align-items:center;
-  justify-content:center;
-  gap:22px;
-  padding:10px 0 10px;
-  border-bottom:1px dashed rgba(255,255,255,.7);
-}
-.logo{gap:12px}
-.logo img{
-  width:64px;
-  height:64px;
-  border:3px solid var(--white);
-  box-shadow:0 0 0 3px rgba(58,36,21,.18),0 4px 10px rgba(0,0,0,.22);
-  background:var(--white);
-}
-.logo-text{display:flex;flex-direction:column;text-align:left;line-height:1.1}
-.logo-text strong{font-size:1.6rem;letter-spacing:3px}
-.logo-text small{
-  font-size:.65rem;
-  font-weight:700;
-  text-transform:uppercase;
-  letter-spacing:1.6px;
-  color:var(--cream);
-  margin-top:3px;
-}
-.paw{font-size:1.4rem;opacity:.5}
-.paw-l{transform:rotate(-20deg)}
-.paw-r{transform:rotate(20deg) scaleX(-1)}
-
-/* pill navigation */
-.main-nav ul{gap:10px;padding:12px 10px 14px}
-.main-nav a,
-.main-nav a:hover,
-.main-nav a[aria-current="page"]{border-bottom-color:transparent}
-.main-nav a{
-  padding:7px 18px;
-  border-radius:999px;
-  transition:background .2s,color .2s,transform .2s;
-}
-.main-nav a:hover{background:rgba(255,255,255,.4);transform:translateY(-1px)}
-.main-nav a[aria-current="page"]{
-  background:var(--brown);
-  color:var(--cream);
-  box-shadow:0 3px 8px rgba(58,36,21,.3);
-}
-
-/* ----- Card polish ----- */
-.card{transition:transform .2s,box-shadow .2s}
-.card:hover{transform:translateY(-3px);box-shadow:0 10px 22px rgba(120,80,30,.18)}
-
-/* ----- Home layout ----- */
-@media (min-width:901px){
-  main.home{
-    grid-template-columns:minmax(0,1.3fr) minmax(0,1fr) minmax(0,1fr);
-  }
-}
-main.home > .card:nth-of-type(2){border-top-color:var(--green)}
-main.home > .card:nth-of-type(3){border-top-color:var(--orange)}
-main.home > .card:nth-of-type(4){border-top-color:var(--pink)}
-main.home > .card:nth-of-type(5){border-top-color:var(--brown)}
-
-/* ----- Home: hero bubbles ----- */
-main.home .hero{position:relative;isolation:isolate}
-main.home .hero::before,
-main.home .hero::after{
-  content:"";
-  position:absolute;
-  border-radius:50%;
-  background:rgba(255,255,255,.35);
-  z-index:-1;
-}
+main.home .hero::before,main.home .hero::after{content:"";position:absolute;border-radius:50%;background:rgba(255,255,255,.35);z-index:-1}
 main.home .hero::before{width:220px;height:220px;right:-50px;top:-70px}
 main.home .hero::after{width:130px;height:130px;left:42%;bottom:-50px;background:rgba(255,255,255,.25)}
-.hero-img{background:var(--white);object-position:center}
-@media (min-width:901px) and (min-height:501px){
-  .hero-img{width:200px;height:200px;margin-right:14px}
-}
-
-/* ----- Home: About stats ----- */
-.stats{
-  display:grid;
-  grid-template-columns:repeat(3,minmax(0,1fr));
-  gap:8px;
-  margin-top:14px;
-}
-.stat{
-  background:var(--cream);
-  border-radius:14px;
-  padding:8px 4px;
-  text-align:center;
-  display:flex;
-  flex-direction:column;
-  align-items:center;
-}
+.hero-text{flex:1 1 auto;min-width:0}
+.hero-img{width:140px;height:140px;flex-shrink:0;object-fit:cover;object-position:center;border-radius:50%;background:var(--white);border:4px solid var(--white);box-shadow:0 4px 10px rgba(0,0,0,.15)}
+.stats{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:8px;margin-top:14px}
+.stat{background:var(--cream);border-radius:14px;padding:8px 4px;text-align:center;display:flex;flex-direction:column;align-items:center}
 .stat-ico{font-size:1.4rem;line-height:1.2}
-.stat strong{font-size:1.05rem;color:var(--orange-dark)}
+.stat strong{font-size:1.05rem;color:var(--accent)}
 .stat small{font-size:.7rem;text-transform:uppercase;letter-spacing:.5px;color:var(--muted)}
-
-/* ----- Home: Explore links as tiles ----- */
-ul.links.explore-links{list-style:none;padding-left:0;display:grid;gap:8px;margin-top:4px}
-ul.links.explore-links li{margin:0}
-ul.links.explore-links a{
-  display:flex;
-  align-items:center;
-  gap:10px;
-  padding:11px 14px;
-  background:var(--cream);
-  border-radius:14px;
-  text-decoration:none;
-  color:var(--brown);
-  font-size:1rem;
-  transition:background .2s,transform .2s;
-}
-ul.links.explore-links a:hover{background:var(--pink);transform:translateX(4px)}
-.explore-links .ico{font-size:1.3rem}
-.explore-links .arrow{margin-left:auto;font-weight:700;color:var(--orange-dark)}
-
-/* ----- Home: Created by ----- */
+ul.explore-links{list-style:none;display:grid;gap:8px;margin-top:4px}
+ul.explore-links li{margin:0}
+ul.explore-links a{display:flex;align-items:center;gap:12px;padding:10px 14px;background:var(--bg);border-left:6px solid var(--c);border-radius:14px;text-decoration:none;color:var(--brown);transition:background .2s,color .2s,transform .2s}
+ul.explore-links a:hover{background:var(--c);color:var(--white);transform:translateX(4px)}
+.explore-links .ico{font-size:1.4rem}
+.explore-links .t-txt{display:flex;flex-direction:column;line-height:1.25;font-size:1rem}
+.explore-links .t-txt small{font-size:.75rem;font-weight:400;opacity:.8}
+.explore-links .arrow{margin-left:auto;font-weight:700;color:var(--c)}
+.explore-links a:hover .arrow{color:var(--white)}
 .creator{display:flex;align-items:center;gap:12px;margin-bottom:8px}
 .creator h2{margin-bottom:0}
-.avatar{
-  width:54px;
-  height:54px;
-  flex-shrink:0;
-  border-radius:50%;
-  background:var(--orange);
-  color:var(--white);
-  display:flex;
-  align-items:center;
-  justify-content:center;
-  font-weight:700;
-  font-size:1.2rem;
-  letter-spacing:1px;
-  border:3px solid var(--pink);
-}
+.avatar{width:54px;height:54px;flex-shrink:0;border-radius:50%;background:var(--accent);color:var(--white);display:flex;align-items:center;justify-content:center;font-weight:700;font-size:1.2rem;letter-spacing:1px;border:3px solid var(--pink)}
 .paw-row{margin-top:14px;font-size:1.3rem;letter-spacing:6px;opacity:.35}
 
-/* ===================================================== */
+/* ===== BREEDS ===== */
+main.breeds{grid-template-columns:repeat(5,minmax(0,1fr));grid-template-rows:auto 1fr;overflow:hidden}
+.breed-grid{grid-column:1 / -1;display:grid;grid-template-columns:repeat(5,minmax(0,1fr));gap:18px;min-height:0;overflow:hidden}
+.breed-card{display:flex;flex-direction:column;min-width:0;min-height:0;overflow:hidden;padding:12px 14px}
+.breed-photo{display:block;flex:1 1 0;min-height:70px;max-height:150px;width:100%;height:auto;object-fit:contain;border-radius:14px;background:var(--cream);margin-bottom:6px}
+.breed-num{display:block;font-size:1.5rem;line-height:1.1;font-weight:700;color:var(--accent)}
+.breed-card h2{font-size:1.05rem;margin:2px 0 6px}
+.breed-card dt{font-size:.7rem;font-weight:700;text-transform:uppercase;letter-spacing:.5px;color:var(--muted);margin-top:5px}
+.breed-card dd{font-size:.85rem;line-height:1.3}
+.breed-extra{margin-top:auto;padding-top:8px;display:grid;gap:6px}
+.breed-extra .box{background:var(--cream);border-radius:10px;padding:6px 8px;font-size:.8rem;line-height:1.3}
+.breed-extra .box strong{display:block;font-size:.68rem;text-transform:uppercase;letter-spacing:.5px;color:var(--accent);margin-bottom:1px}
 
-/* ===== ADDED: Android fix (address bar does not cut the page) ===== */
-@media (min-width:901px){
-  @supports (height:100dvh){
-    body.no-scroll{height:100dvh}
-  }
-}
+/* ===== FOOD ===== */
+main.food{grid-template-columns:repeat(3,1fr);grid-template-rows:auto 1fr;gap:18px}
+main.food .card{display:flex;flex-direction:column}
+main.food .card.safe{border-top-color:var(--green)}
+main.food .card.unsafe{border-top-color:var(--red)}
+main.food .card .card-note{margin-top:auto}
+.mini{background:var(--cream);border-radius:12px;padding:8px 10px;margin-bottom:8px}
+main.food .card .mini:last-child{margin-bottom:0}
+.mini strong{display:block;font-size:.95rem}
+.mini p{font-size:.95rem;line-height:1.35}
+.pill-list{list-style:none;display:flex;flex-wrap:wrap;gap:8px;margin:6px 0 10px}
+.pill-list li{padding:6px 12px;border-radius:999px;background:var(--cream);border:1.5px solid var(--green);font-size:.92rem;font-weight:700}
+.unsafe .pill-list li{border-color:var(--red)}
+.card-note{font-size:.85rem;color:var(--muted);line-height:1.4}
 
-/* ===== ADDED: Tablets / small screens (breeds cards) ===== */
-@media (max-width:900px){
-  main.breeds,.breed-grid{overflow:visible}
-  .breed-card{overflow:visible}
-  .breed-photo{
-    flex:none;
-    height:auto;
-    max-height:none;
-    aspect-ratio:4 / 3;
-  }
-}
+/* ===== HABITAT ===== */
+main.habitat{grid-template-columns:1.2fr 1fr 1fr;grid-template-rows:auto 1fr 1fr}
+main.habitat .card{background:var(--bg);border-top-color:var(--c);display:flex;flex-direction:column;justify-content:flex-start}
+main.habitat .card .tag{align-self:flex-start;background:var(--c);color:var(--white);padding:2px 10px;border-radius:999px;margin-bottom:6px}
+main.habitat .cage-card{grid-column:1;grid-row:2 / 4}
+.cage-caption{font-size:.9rem;color:var(--muted);margin-bottom:6px}
+.cage{flex:1;min-height:260px;margin-top:6px;border:2px solid var(--c);border-radius:18px;padding:10px;display:grid;gap:8px;grid-template-columns:1fr 1.5fr 1.5fr;grid-template-rows:1fr 1fr 1fr;grid-template-areas:"water wheel wheel" "bed   bed   hide" "food  chew  hide"}
+.cage > div{background:var(--white);border:1px dashed var(--c);border-radius:8px;display:flex;align-items:center;justify-content:center;font-size:.9rem;text-align:center;padding:4px}
 
-/* ===== ADDED: Phone in landscape (short screen) ===== */
-@media (orientation:landscape) and (max-height:500px){
-  body.no-scroll{height:auto;min-height:100dvh;overflow:auto}
-  .brand-row{padding:4px 0}
-  .logo img{width:34px;height:34px;border-width:2px}
-  .logo-text strong{font-size:1.1rem;letter-spacing:2px}
-  .logo-text small{display:none}
-  .paw{display:none}
-  .site-header::after{display:none}
-  .main-nav ul{padding:6px 10px;gap:8px}
-  .main-nav a{padding:5px 14px}
-  main.fit{padding:10px 8px}
-  main.home{padding:14px 8px;gap:14px}
-  main.home .hero h1{font-size:2rem}
-  .hero-img{width:100px;height:100px}
-  .breed-grid{grid-template-columns:repeat(3,minmax(0,1fr))}
-  .breed-card{overflow:visible}
-  .breed-photo{
-    flex:none;
-    height:auto;
-    max-height:none;
-    aspect-ratio:4 / 3;
-  }
-}
+/* ===== ABOUT ===== */
+main.about{grid-template-columns:repeat(3,minmax(0,1fr));grid-template-rows:auto 1fr 1fr}
+main.about .card{background:var(--bg);border-top-color:var(--c);display:flex;flex-direction:column}
+main.about .card .tag{align-self:flex-start;background:var(--c);color:var(--white);padding:2px 10px;border-radius:999px;margin-bottom:6px}
+main.about .mission{grid-column:1 / 3}
+main.about .about-link{margin-top:auto;align-self:flex-start;background:var(--c);border-color:var(--c)}
+main.about .card p + .about-link{margin-top:14px}
+.about-big{font-size:2.2rem;line-height:1;margin-bottom:6px}
+main.about .about-points{list-style:none;display:flex;flex-wrap:wrap;gap:8px;margin-top:auto;padding-top:12px}
+main.about .about-points li{background:var(--white);border-radius:999px;padding:6px 14px;font-size:.9rem;font-weight:700}
+main.about .paw-row{margin-top:auto;text-align:center}
+main.about .pets{grid-column:1 / 3}
+main.about .contact-card{grid-column:3;justify-content:flex-start}
+main.about .contact-list{list-style:none;display:grid;grid-template-columns:1fr;gap:8px;margin:8px 0 12px}
+main.about .contact-list li{background:var(--white);border-radius:16px;padding:8px 14px;margin:0;overflow-wrap:anywhere}
+main.about .contact-card .about-link{margin-top:0}
+@media (max-width:900px){main.about .contact-list{grid-template-columns:1fr}}
 
-/* ===== ADDED: Fill empty space in Breeds cards (desktop/laptop) ===== */
+/* ===== Footer ===== */
+.site-footer{background:var(--orange);text-align:center;padding:3px 0;flex:0 0 auto}
+.site-footer p{font-size:.75rem;line-height:1.3;color:var(--brown)}
+
+/* ===== Desktop / laptop ===== */
 @media (min-width:901px) and (min-height:501px){
-  .breed-card{
-    padding:12px 14px;
-  }
-  .breed-photo{
-    flex:1 1 0;
-    min-height:90px;
-    max-height:none;
-    height:auto;
-    aspect-ratio:auto;
-    object-fit:contain;
-    background:var(--white);
-    margin-bottom:8px;
-  }
-  .breed-extra{
-    margin-top:0;
-    padding-top:10px;
-  }
-}
-
-/* ===== ADDED: Maximize spacing on Home (desktop/laptop) ===== */
-@media (min-width:901px) and (min-height:501px){
-
-  main.home{
-    gap:22px 22px;
-    padding:30px 22px 26px;
-    grid-template-rows:minmax(0,1fr) minmax(0,1fr);
-  }
-
-  main.home .card{
-    padding:clamp(16px,2.4vh,28px) clamp(18px,1.6vw,30px);
-  }
-  main.home > .card:not(.hero){
-    display:flex;
-    flex-direction:column;
-    justify-content:space-between;
-  }
+  .site-footer{padding:3px 0}
+  main.home{grid-template-rows:minmax(0,1fr) minmax(0,1fr)}
+  main.home .card{padding:clamp(16px,2.4vh,28px) clamp(18px,1.6vw,30px)}
+  main.home > .card:not(.hero){display:flex;flex-direction:column;justify-content:space-between}
   main.home .card h2{font-size:clamp(1.3rem,1.5vw,1.8rem);margin-bottom:10px}
   main.home .card p{font-size:clamp(1rem,1.05vw,1.2rem);line-height:1.6}
   main.home .tag{font-size:clamp(.75rem,.8vw,.9rem)}
-
-  /* HERO */
   main.home .hero{padding:clamp(20px,4vh,48px) clamp(24px,3vw,56px)}
-  main.home .hero h1{
-    font-size:clamp(2.6rem,3.7vw,4.6rem);
-    margin:6px 0 10px;
-  }
+  main.home .hero h1{font-size:clamp(2.6rem,3.7vw,4.6rem);margin:6px 0 10px}
   main.home .hero p{font-size:clamp(1.1rem,1.4vw,1.5rem)}
-  main.home .hero .actions{margin-top:clamp(14px,2.6vh,28px);gap:14px}
-  main.home .hero .btn{
-    padding:clamp(10px,1.4vh,15px) clamp(20px,1.8vw,32px);
-    font-size:clamp(1rem,1.1vw,1.2rem);
-  }
-  .hero-img{
-    width:clamp(150px,25vh,330px);
-    height:clamp(150px,25vh,330px);
-    margin-right:clamp(0px,2vw,40px);
-  }
-
-  /* ABOUT */
+  .hero-img{width:clamp(150px,25vh,330px);height:clamp(150px,25vh,330px);margin-right:clamp(0px,2vw,40px)}
   .stats{margin-top:auto;padding-top:14px;gap:12px}
   .stat{padding:clamp(10px,2vh,24px) 6px;border-radius:18px}
   .stat-ico{font-size:clamp(1.6rem,2.6vh,2.6rem)}
   .stat strong{font-size:clamp(1.2rem,1.6vw,1.8rem)}
   .stat small{font-size:clamp(.72rem,.8vw,.9rem)}
-  .chip{font-size:clamp(.8rem,.85vw,1rem);padding:3px 12px}
-
-  /* EXPLORE */
-  ul.links.explore-links{
-    flex:1;
-    gap:12px;
-    margin-top:10px;
-    grid-auto-rows:minmax(0,1fr);
-  }
-  ul.links.explore-links li{display:flex}
-  ul.links.explore-links a{
-    flex:1;
-    padding:0 clamp(14px,1.4vw,24px);
-    font-size:clamp(1.05rem,1.25vw,1.4rem);
-    border-radius:18px;
-  }
+  ul.explore-links{flex:1;gap:12px;margin-top:10px;grid-auto-rows:minmax(0,1fr)}
+  ul.explore-links li{display:flex}
+  ul.explore-links a{flex:1;padding:0 clamp(14px,1.4vw,24px);border-radius:18px}
+  .explore-links .t-txt{font-size:clamp(1.05rem,1.25vw,1.4rem)}
+  .explore-links .t-txt small{font-size:clamp(.72rem,.8vw,.9rem)}
   .explore-links .ico{font-size:clamp(1.5rem,2vw,2.2rem)}
   .explore-links .arrow{font-size:1.3rem}
-
-  /* CREATED BY */
   .creator{gap:16px;margin-bottom:0}
-  .avatar{
-    width:clamp(56px,7vh,84px);
-    height:clamp(56px,7vh,84px);
-    font-size:clamp(1.3rem,1.8vw,2rem);
-  }
-  main.home > .card:nth-of-type(4) p{margin:auto 0;padding:10px 0}
-  .paw-row{
-    margin-top:0;
-    text-align:center;
-    font-size:clamp(1.6rem,3vh,2.6rem);
-    letter-spacing:clamp(10px,1.2vw,22px);
-    opacity:.5;
-  }
-
-  /* CONTACT */
-  #contact ul.plain{
-    flex:1;
-    display:flex;
-    flex-direction:column;
-    justify-content:space-evenly;
-    margin:6px 0;
-  }
+  .avatar{width:clamp(56px,7vh,84px);height:clamp(56px,7vh,84px);font-size:clamp(1.3rem,1.8vw,2rem)}
+  .paw-row{margin-top:0;text-align:center;font-size:clamp(1.6rem,3vh,2.6rem);letter-spacing:clamp(10px,1.2vw,22px);opacity:.5}
+  #contact ul.plain{flex:1;display:flex;flex-direction:column;justify-content:space-evenly;margin:6px 0}
   #contact ul.plain li{font-size:clamp(1rem,1.1vw,1.25rem);margin:0}
   #contact .actions{margin-top:0}
-  #contact .btn{
-    padding:clamp(10px,1.4vh,15px) clamp(20px,1.8vw,32px);
-    font-size:clamp(1rem,1.1vw,1.2rem);
-  }
-}
-
-/* ===================================================== */
-/* ===== ADDED: Food Guide + Habitat & Care ============ */
-/* ===================================================== */
-.pill-list{list-style:none;display:flex;flex-wrap:wrap;gap:8px;margin:6px 0 10px}
-.pill-list li{
-  padding:6px 12px;
-  border-radius:999px;
-  background:var(--cream);
-  border:1.5px solid var(--green);
-  font-size:.92rem;
-  font-weight:700;
-}
-.unsafe .pill-list li{border-color:var(--red)}
-.card-note{font-size:.85rem;color:var(--muted);line-height:1.4}
-.cage-caption{font-size:.9rem;color:var(--muted);margin-bottom:6px}
-
-main.food .card{display:flex;flex-direction:column}
-main.food .card .card-note{margin-top:auto}
-main.food .card .mini:last-child{margin-bottom:0}
-
-main.habitat .card:not(.cage-card){
-  display:flex;
-  flex-direction:column;
-  justify-content:flex-start;
-}
-
-@media (min-width:901px) and (min-height:501px){
-  main.food,
-  main.habitat{
-    padding:20px 22px 24px;
-    gap:20px;
-  }
-  main.food h1,
-  main.habitat h1{font-size:clamp(1.8rem,2.2vw,2.6rem)}
-
-  main.food .card,
-  main.habitat .card{
-    padding:clamp(14px,2.2vh,26px) clamp(18px,1.6vw,30px);
-  }
-  main.food .card h2,
-  main.habitat .card h2{font-size:clamp(1.25rem,1.5vw,1.7rem)}
-
-  .pill-list{gap:10px}
-  .pill-list li{
-    padding:clamp(6px,1vh,10px) clamp(12px,1vw,18px);
-    font-size:clamp(.9rem,1vw,1.15rem);
-  }
-  .card-note{font-size:clamp(.85rem,.9vw,1.05rem)}
-
-  main.food .mini{
-    flex:1;
-    display:flex;
-    flex-direction:column;
-    justify-content:center;
-    padding:clamp(8px,1.4vh,16px) 14px;
-    margin-bottom:10px;
-  }
-  main.food .mini strong{font-size:clamp(.95rem,1.1vw,1.25rem);color:var(--orange-dark)}
-  main.food .mini p{font-size:clamp(.9rem,1vw,1.15rem);line-height:1.4}
-
-  main.habitat .card:not(.cage-card) p{
-    font-size:clamp(.95rem,1.05vw,1.2rem);
-    line-height:1.6;
-  }
-  .cage{gap:10px;padding:12px}
-  .cage div{font-size:clamp(.9rem,1.05vw,1.2rem);font-weight:700}
-}
-
-/* ===================================================== */
-/* ===== ADDED: NO SCROLL - everything fits the screen == */
-/* ===================================================== */
-@media (min-width:901px) and (min-height:501px){
-
-  /* header uses less height so the cards have room */
-  .brand-row{padding:6px 0 8px}
-  .logo img{
-    width:clamp(44px,7vh,64px);
-    height:clamp(44px,7vh,64px);
-  }
-  .main-nav ul{padding:8px 10px 14px}
-  .main-nav a{padding:clamp(5px,.9vh,8px) 18px}
-  .site-footer{padding:6px 0}
-
-  /* Hamster Breeds: sizes follow the screen height */
-  main.breeds{
-    padding:clamp(12px,2.4vh,24px) 18px clamp(8px,1.6vh,16px);
-    gap:clamp(8px,1.6vh,16px);
-  }
-  main.breeds h1{
-    font-size:clamp(1.4rem,3.6vh,2.2rem);
-    line-height:1.1;
-  }
+  #contact .btn{padding:clamp(10px,1.4vh,15px) clamp(20px,1.8vw,32px);font-size:clamp(1rem,1.1vw,1.2rem)}
+  main.breeds{padding:clamp(12px,2.4vh,24px) 18px clamp(8px,1.6vh,16px);gap:clamp(8px,1.6vh,16px)}
+  main.breeds h1{font-size:clamp(1.4rem,3.6vh,2.2rem);line-height:1.1}
   .breed-grid{gap:clamp(10px,1.6vw,18px)}
   .breed-card{padding:clamp(8px,1.4vh,14px) clamp(10px,1vw,16px)}
-  .breed-photo{min-height:60px;margin-bottom:clamp(4px,.8vh,8px)}
+  .breed-photo{flex:1 1 0;min-height:60px;max-height:none;background:var(--white);margin-bottom:clamp(4px,.8vh,8px)}
   .breed-num{font-size:clamp(1.2rem,3vh,1.8rem)}
   .breed-card h2{font-size:clamp(.95rem,2vh,1.2rem);margin-bottom:4px}
   .breed-card dt{font-size:clamp(.6rem,1.15vh,.75rem);margin-top:clamp(2px,.8vh,7px)}
   .breed-card dd{font-size:clamp(.75rem,1.6vh,.95rem);line-height:1.25}
-  .breed-extra{gap:clamp(4px,.8vh,8px);padding-top:clamp(4px,1vh,10px)}
+  .breed-extra{margin-top:0;gap:clamp(4px,.8vh,8px);padding-top:clamp(4px,1vh,10px)}
   .breed-extra .box{font-size:clamp(.68rem,1.4vh,.85rem);padding:clamp(4px,.8vh,8px) 8px}
   .strip{padding:clamp(6px,1.2vh,12px) 18px}
+  main.about{padding:20px 22px 24px;gap:20px;overflow:hidden}
+  main.about h1{font-size:clamp(1.8rem,2.2vw,2.6rem)}
+  main.about .card{padding:clamp(14px,2.2vh,26px) clamp(18px,1.6vw,30px)}
+  main.about .card h2{font-size:clamp(1.25rem,1.5vw,1.7rem)}
+  main.about .card p{font-size:clamp(.95rem,1.05vw,1.2rem);line-height:1.6}
+  main.about .card .tag{font-size:clamp(.72rem,.8vw,.9rem)}
+  .about-big{font-size:clamp(2rem,4vh,3rem)}
+  main.about .creator{margin-bottom:10px}
+  main.food,main.habitat{padding:20px 22px 24px;gap:20px;overflow:hidden}
+  main.food h1,main.habitat h1{font-size:clamp(1.8rem,2.2vw,2.6rem)}
+  main.food .card,main.habitat .card{padding:clamp(14px,2.2vh,26px) clamp(18px,1.6vw,30px)}
+  main.food .card h2,main.habitat .card h2{font-size:clamp(1.25rem,1.5vw,1.7rem)}
+  .pill-list{gap:10px}
+  .pill-list li{padding:clamp(6px,1vh,10px) clamp(12px,1vw,18px);font-size:clamp(.9rem,1vw,1.15rem)}
+  .card-note{font-size:clamp(.85rem,.9vw,1.05rem)}
+  main.food .mini{flex:1;display:flex;flex-direction:column;justify-content:center;padding:clamp(8px,1.4vh,16px) 14px;margin-bottom:10px}
+  main.food .mini strong{font-size:clamp(.95rem,1.1vw,1.25rem);color:var(--accent)}
+  main.food .mini p{font-size:clamp(.9rem,1vw,1.15rem);line-height:1.4}
+  main.habitat .card:not(.cage-card) p{font-size:clamp(.95rem,1.05vw,1.2rem);line-height:1.6}
+  main.habitat .card .tag{font-size:clamp(.72rem,.8vw,.9rem)}
+  .cage{gap:10px;padding:12px}
+  .cage > div{font-size:clamp(.9rem,1.05vw,1.2rem);font-weight:700}
+}
+@media (min-width:901px) and (min-height:501px) and (max-height:800px){.breed-extra .box:last-child{display:none}}
+@media (min-width:901px){@supports (height:100dvh){body.no-scroll{height:100dvh}}}
 
-  /* Food + Habitat: stay inside the screen */
-  main.food,
-  main.habitat{overflow:hidden}
+/* ===== Phones / tablets ===== */
+@media (max-width:900px){
+  body.no-scroll{height:auto;overflow:auto}
+  main.fit,main.home,main.breeds,main.food,main.habitat,main.about{display:block}
+  main.fit > *{margin-bottom:16px}
+  .breed-grid{grid-template-columns:1fr 1fr}
+  main.home .hero{flex-direction:column-reverse;text-align:center}
+  main.home .hero h1{font-size:2.3rem}
+  main.breeds,.breed-grid{overflow:visible}
+  .breed-card{overflow:visible}
+  .breed-photo{flex:none;height:auto;max-height:none;aspect-ratio:4 / 3}
+  .main-nav ul{justify-content:center}
+  .topbar-inner{justify-content:center}
+}
+@media (max-width:560px){
+  .breed-grid{grid-template-columns:1fr}
+  .main-nav a{padding:5px}
+  .main-nav a:not([aria-current="page"]) .n-txt{display:none}
+  .main-nav a[aria-current="page"]{padding-right:14px}
+}
+@media (orientation:landscape) and (max-height:500px){
+  body.no-scroll{height:auto;min-height:100dvh;overflow:auto}
+  .topbar-inner{padding:4px 12px}
+  .logo img{width:36px;height:36px;border-width:2px;margin:4px;box-shadow:0 0 0 4px rgba(150,95,40,.35)}
+  .logo-text strong{font-size:1.1rem;letter-spacing:2px}
+  .logo-text small{display:none}
+  main.fit{padding:10px 8px}
+  main.home{padding:14px 8px;gap:14px}
+  main.home .hero h1{font-size:2rem}
+  .hero-img{width:100px;height:100px}
+  .breed-grid{grid-template-columns:repeat(3,minmax(0,1fr))}
 }
 
-/* short laptop screens: hide the 2nd tip so nothing gets cut */
-@media (min-width:901px) and (min-height:501px) and (max-height:800px){
-  .breed-extra .box:last-child{display:none}
-  .paw{display:none}
-}
-
-/* ===================================================== */
-/* ===== ADDED: Dotted background on ALL pages ========= */
-/* ===================================================== */
-main.fit{
-  background-image:radial-gradient(rgba(232,160,77,.22) 2px,transparent 2px);
-  background-size:26px 26px;
-}
-/* ===================================================== */
-/* ===== ADDED: Contact pop-up (CSS only) ============== */
-/* ===================================================== */
-.modal-bg{
-  position:fixed;inset:0;z-index:1000;
-  display:none;align-items:center;justify-content:center;
-  padding:16px;background:rgba(58,36,21,.55);
-}
+/* ===== Contact pop-up (CSS only) ===== */
+.modal-bg{position:fixed;inset:0;z-index:1000;display:none;align-items:center;justify-content:center;padding:16px;background:rgba(58,36,21,.55)}
 .modal-bg:target{display:flex}
 .modal-bg .modal-close-bg{position:absolute;inset:0;cursor:default}
-.modal{
-  position:relative;width:100%;max-width:440px;max-height:92vh;overflow:auto;
-  background:var(--white);border-top:6px solid var(--orange);
-  border-radius:22px;padding:22px 22px 20px;
-  box-shadow:0 20px 50px rgba(58,36,21,.35);
-}
+.modal{position:relative;width:100%;max-width:440px;max-height:92vh;overflow:auto;background:var(--white);border-top:6px solid var(--pink);border-radius:22px;padding:22px 22px 20px;box-shadow:0 20px 50px rgba(58,36,21,.35)}
 .modal h2{font-size:1.4rem;margin-bottom:4px}
 .modal .sub{font-size:.95rem;color:var(--muted);margin-bottom:14px;line-height:1.4}
-.modal-x{
-  position:absolute;top:10px;right:12px;width:34px;height:34px;
-  display:flex;align-items:center;justify-content:center;
-  border-radius:50%;background:var(--cream);color:var(--brown);
-  font-size:1.3rem;font-weight:700;text-decoration:none;
-}
+.modal-x{position:absolute;top:10px;right:12px;width:34px;height:34px;display:flex;align-items:center;justify-content:center;border-radius:50%;background:var(--cream);color:var(--brown);font-size:1.3rem;font-weight:700;text-decoration:none}
 .modal-x:hover{background:var(--pink)}
 .modal label{display:block;font-size:.75rem;font-weight:700;text-transform:uppercase;letter-spacing:.5px;color:var(--muted);margin:10px 0 4px}
-.modal input[type="text"],
-.modal input[type="email"],
-.modal textarea{
-  width:100%;padding:10px 12px;border:1.5px solid var(--orange);
-  border-radius:12px;background:var(--cream);color:var(--brown);
-  font:inherit;font-size:1rem;
-}
+.modal input[type="text"],.modal input[type="email"],.modal textarea{width:100%;padding:10px 12px;border:1.5px solid var(--pink);border-radius:12px;background:var(--cream);color:var(--brown);font:inherit;font-size:1rem}
 .modal textarea{min-height:110px;resize:vertical}
-.modal input:focus,
-.modal textarea:focus{outline:2px solid var(--brown);outline-offset:1px}
+.modal input:focus,.modal textarea:focus{outline:2px solid var(--brown);outline-offset:1px}
 .modal .btn{cursor:pointer;font-family:inherit}
 .modal .done{text-align:center;padding:10px 0 4px}
-.modal .done .big{font-size:3rem;line-height:1}
-.modal .done h2{margin:10px 0 6px}
 .modal .done .actions{justify-content:center}
+.modal .done .hamster{width:78px;height:78px;margin:0 auto 10px;border-radius:50%;background:#E8F5E9;border:0;color:#2E7D32;font-size:2.6rem;font-weight:400;display:flex;align-items:center;justify-content:center;line-height:1}
+.modal .done h2{text-transform:uppercase;letter-spacing:.5px;margin:6px 0 8px}
+.modal .done .sub{margin-bottom:18px}
+.modal .done .btn-full{display:block;width:100%;text-align:center;padding:13px 18px}
 
-/* ===================================================== */
-/* ===== ADDED: Hamster badge on "Message sent" ======== */
-/* ===================================================== */
-.modal .done .hamster{
-  width:86px;height:86px;margin:0 auto 6px;
-  border-radius:50%;background:var(--cream);
-  border:4px solid var(--pink);
-  display:flex;align-items:center;justify-content:center;
-  font-size:2.6rem;line-height:1;
+/* ===== Shared tile grid ===== */
+.pet-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));grid-auto-rows:minmax(0,1fr);gap:12px;flex:1;min-height:0;margin-top:6px}
+.pet{background:var(--bg);border-radius:18px;padding:8px 12px;display:flex;align-items:center;gap:12px;min-width:0}
+.pet-photo{position:relative;width:clamp(48px,8vh,84px);aspect-ratio:1;flex-shrink:0;border-radius:50%;background:var(--white);border:3px solid var(--c);display:flex;align-items:center;justify-content:center;font-size:1.8rem;overflow:hidden}
+.pet-photo img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
+.pet-info{min-width:0}
+.pet-info strong{display:block;font-size:1.05rem}
+.pet-info small{display:block;font-size:.8rem;color:var(--muted);line-height:1.3}
+@media (max-width:560px){.pet-grid{grid-template-columns:1fr}}
+
+/* ===== Hamster animations above the bottom bar ===== */
+.site-footer{position:relative}
+.hamster-track{position:relative;flex:0 0 auto;height:92px;overflow:hidden;pointer-events:none;z-index:40;border-bottom:4px solid #F0B3B3;background:linear-gradient(180deg,transparent 55%,#FDEAEF 100%)}
+.hv{position:absolute;bottom:0;display:flex;align-items:flex-end;line-height:1;font-size:28px}
+.hv .flip{display:inline-block;transform:scaleX(-1)}
+.hv .h{display:inline-block;transform-origin:50% 100%;animation:hv-bob .45s ease-in-out infinite alternate}
+.hv-walk{left:-90px;animation:hv-right 22s linear infinite}
+.hv-run{right:-100px;animation:hv-left 9s linear infinite}
+.hv-run .h{animation:hv-bob .22s ease-in-out infinite alternate}
+.hv-run .dust{font-size:18px;opacity:.7;margin-left:2px;animation:hv-dust .3s ease-in-out infinite alternate}
+.hv-bike{left:-90px;width:64px;height:46px;animation:hv-right 15s linear infinite}
+.hv-bike svg.bike{position:absolute;left:0;bottom:0;overflow:visible}
+.hv-bike .frame{fill:none;stroke:var(--brown);stroke-width:2.5;stroke-linecap:round;stroke-linejoin:round}
+.hv-bike .tire{fill:none;stroke:var(--brown);stroke-width:2.5}
+.hv-bike .spoke{stroke:var(--accent);stroke-width:1.4}
+.hv-bike .wheel{transform-box:fill-box;transform-origin:center;animation:hv-spin .5s linear infinite}
+.hv-bike .rider{position:absolute;left:17px;bottom:22px;line-height:1}
+.hv-bike .rider .h{animation:hv-bob .25s ease-in-out infinite alternate}
+.hv-carry{right:-100px;align-items:flex-end;animation:hv-left 20s linear infinite}
+.hv-carry .item{font-size:20px;margin-right:-4px;margin-bottom:2px;animation:hv-bob .45s ease-in-out infinite alternate;animation-delay:.1s}
+.hv-ball{left:-90px;width:42px;height:42px;animation:hv-right 20s linear infinite}
+.hv-ball .ball{position:absolute;inset:0;border-radius:50%;border:2px solid rgba(62,134,198,.75);background:radial-gradient(circle at 30% 30%,rgba(255,255,255,.85),rgba(62,134,198,.18));animation:hv-spin 2.4s linear infinite}
+.hv-ball .ball::after{content:"";position:absolute;top:3px;left:50%;width:6px;height:6px;margin-left:-3px;border-radius:50%;background:rgba(62,134,198,.8)}
+.hv-ball .inner{position:absolute;left:50%;bottom:6px;margin-left:-14px;line-height:1}
+.hv-ball .inner .h{animation:hv-bob .3s ease-in-out infinite alternate}
+
+/* ===== Full-body hamster ===== */
+.hamster-svg{width:38px;height:29px;display:block;overflow:visible}
+.hamster-svg .leg{transform-box:fill-box;transform-origin:center;animation:hv-leg .22s ease-in-out infinite alternate}
+.hamster-svg .leg.b{animation-direction:alternate-reverse}
+.hv-bike .rider .hamster-svg{width:30px;height:23px}
+.hv-ball .hamster-svg{width:28px;height:21px}
+
+@keyframes hv-right{from{left:-90px}to{left:100%}}
+@keyframes hv-left{from{right:-100px}to{right:100%}}
+@keyframes hv-bob{from{transform:translateY(0) rotate(-6deg)}to{transform:translateY(-5px) rotate(6deg)}}
+@keyframes hv-dust{from{opacity:.25;transform:translateX(0)}to{opacity:.8;transform:translateX(4px)}}
+@keyframes hv-spin{to{transform:rotate(360deg)}}
+@keyframes hv-leg{from{transform:translateX(-2px)}to{transform:translateX(2px)}}
+@media (prefers-reduced-motion:reduce){.hv,.hv *{animation:none !important}.hv{left:20px;right:auto}}
+
+/* ===== HOME (new layout) ===== */
+main.home .hero{
+  grid-column:1 / -1;grid-row:1;border-top:0;border-radius:26px;
+  background-color:#FDE1E8;
+  background-image:linear-gradient(90deg,rgba(255,238,244,.95) 0%,rgba(255,238,244,.8) 30%,rgba(255,238,244,0) 55%),url('backgroundframe.jpg');
+  background-size:cover;background-position:center;
+  display:flex;flex-direction:column;align-items:flex-start;justify-content:center;gap:0;
 }
+main.home .hero::before,main.home .hero::after{display:none}
+main.home .hero .hero-text{max-width:45%}
+main.home .hero .tag{display:inline-block;background:var(--white);color:var(--brown);padding:6px 16px;border-radius:999px;box-shadow:0 2px 6px rgba(58,36,21,.12);text-transform:none;letter-spacing:0;font-size:1rem}
+main.home .hero h1{color:var(--brown)}
+.btn-explore{margin-top:14px;display:inline-flex;align-items:center;gap:8px;padding:12px 26px;font-size:1.05rem}
+main.home .about-card{grid-column:3;grid-row:1;position:relative;border-top-color:#F0B3B3;background:linear-gradient(180deg,#FFF5F8,#FDEAEF)}
+main.home .about-card p{max-width:100%}
+.chips{display:flex;gap:10px;margin-top:12px;position:relative;z-index:1}
+.chip{display:flex;flex-direction:column;align-items:center;gap:2px;padding:8px 12px;background:var(--white);border:2px solid #F0D4E0;border-radius:18px;text-decoration:none;color:var(--brown);font-weight:700;font-size:.85rem}
+.chip span{font-size:1.5rem;line-height:1}
+.chip:hover{background:var(--cream)}
+.about-hamster{position:absolute;right:6px;bottom:0;height:62%;max-width:42%;object-fit:contain;pointer-events:none}
+main.home .explore-card{grid-column:1;grid-row:2;border-top-color:#F0B3B3;background:#FFF9FB}
+.explore-links .thumb{position:relative;width:clamp(52px,9vh,88px);aspect-ratio:1;flex-shrink:0;border-radius:50%;background:var(--white);border:3px solid var(--c);display:flex;align-items:center;justify-content:center;font-size:clamp(1.6rem,3.4vh,2.4rem);overflow:hidden}
+.explore-links .thumb img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
+main.home .facts-card{grid-column:2;grid-row:2;border-top-color:#B68AD6;background:linear-gradient(180deg,#FFF9FB,#F4EAFB)}
+.facts-body{display:flex;align-items:center;gap:12px;flex:1;min-height:0}
+.facts-hamster{width:34%;max-height:100%;object-fit:contain;flex-shrink:0}
+.facts-list{list-style:none;display:grid;gap:8px;flex:1;min-width:0}
+.facts-list li{display:flex;align-items:center;gap:10px;background:#F1E2FA;border-radius:18px;padding:8px 12px;font-size:.9rem;line-height:1.3}
+.facts-list li::before{content:"\2713";flex-shrink:0;width:26px;height:26px;border-radius:50%;border:2px solid var(--brown);display:flex;align-items:center;justify-content:center;font-weight:700;font-size:.85rem}
+main.home .sleep-card{
+  grid-column:3;grid-row:2;border-top:0;color:var(--brown);
+  background-color:#FDE1E8;
+  background-image:linear-gradient(180deg,rgba(255,238,244,.85) 0%,rgba(255,238,244,0) 45%),url('hamster-sleeping.jpg');
+  background-size:cover;background-position:center bottom;
+  display:flex;align-items:flex-start;justify-content:center;
+}
+main.home .sleep-card h2{font-size:clamp(1.4rem,1.9vw,2.2rem);text-align:center;line-height:1.2;margin:0;transform:rotate(-4deg)}
+@media (min-width:901px) and (min-height:501px){
+  main.home .hero{padding:clamp(20px,4vh,48px) clamp(24px,3vw,56px)}
+  main.home > .card:not(.hero){justify-content:flex-start}
+  main.home .about-card p{font-size:clamp(.9rem,.95vw,1.1rem)}
+  .facts-list li{font-size:clamp(.78rem,.85vw,1rem);padding:clamp(5px,1vh,10px) 12px}
+  ul.explore-links a{padding:0 clamp(10px,1vw,18px);gap:14px}
+}
+@media (max-width:900px){
+  main.home .hero{min-height:300px;background-image:linear-gradient(180deg,rgba(255,238,244,.92) 0%,rgba(255,238,244,.7) 55%,rgba(255,238,244,.2) 100%),url('backgroundframe.jpg');padding:22px}
+  main.home .hero .hero-text{max-width:100%}
+  main.home .about-card{min-height:360px;padding-bottom:150px}
+  .about-hamster{height:140px;max-width:45%}
+  .facts-body{flex-direction:column}
+  .facts-hamster{width:50%}
+  main.home .sleep-card{min-height:240px}
+  main.home .hero{align-items:center;text-align:center}
+}
+
+/* ===== Creator photo ===== */
+.avatar{position:relative;overflow:hidden}
+.avatar img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
+.pet-info .pet-age{font-weight:700;color:var(--accent)}
+main.about .pet-info small{font-size:clamp(.7rem,.85vw,.85rem)}
+
+/* ===== Bigger footer animation ===== */
+.hv{transform:scale(1.9);transform-origin:left bottom}
+.hv-run,.hv-carry{transform-origin:right bottom}
+
+/* ===== Ideal Cage Setup: hamsters doing things ===== */
+.cage{--s:clamp(40px,min(8.5vh,6vw),90px)}
+.cage > div{flex-direction:column;gap:.15rem;overflow:hidden}
+.cage > .cw,.cage > .cf{--s:clamp(28px,min(6.5vh,3.3vw),58px)}
+.cage{grid-template-columns:1.4fr 1.5fr 1.5fr}
+.cage .scene{display:flex;align-items:flex-end;justify-content:center;height:1.3em;font-size:var(--s);line-height:1;position:relative}
+.cage .lbl{font-size:clamp(.8rem,.95vw,1.1rem);font-weight:700;line-height:1.1}
+.cage .ico{font-size:1em;line-height:1;display:block}
+.cage .sham{width:.95em;height:.72em;display:block;flex-shrink:0;overflow:visible}
+.cage .drink{transform-origin:80% 100%;animation:c-drink .9s ease-in-out infinite}
+.cage .eat{transform-origin:80% 100%;animation:c-eat .35s ease-in-out infinite}
+.cage .chew{animation:c-chew .18s ease-in-out infinite}
+.cage .ico.drip{animation:c-drip 1.4s ease-in infinite}
+.cage .ico.wob{animation:c-wob .18s ease-in-out infinite alternate;transform-origin:50% 100%}
+.cage .wheelbox{position:relative;width:1.3em;height:1.3em;display:block}
+.cage .ring{position:absolute;inset:0;border:.07em solid var(--c);border-radius:50%;animation:hv-spin 1.6s linear infinite reverse;
+  background:linear-gradient(var(--c),var(--c)) center/100% .04em no-repeat,linear-gradient(var(--c),var(--c)) center/.04em 100% no-repeat}
+.cage .wheelbox .sham{position:absolute;left:50%;bottom:.1em;margin-left:-.47em;animation:c-run .2s ease-in-out infinite alternate}
+.cage .bedbox{position:relative;display:block;width:1.9em;height:1.2em;overflow:hidden}
+.cage .bedbox .sham{position:absolute;left:.5em;bottom:.38em;z-index:1;animation:c-peek 3s ease-in-out infinite}
+.cage .mound{position:absolute;left:0;right:0;bottom:0;height:.55em;z-index:2;background:#E9D2B0;border-radius:50% 50% 0 0 / 100% 100% 0 0;box-shadow:inset 0 .06em 0 rgba(255,255,255,.5)}
+.cage .house{position:relative;display:block;width:1.3em;height:1.2em}
+.cage .roof{position:absolute;top:0;left:-.05em;right:-.05em;height:.5em;background:#C4705A;clip-path:polygon(50% 0,100% 100%,0 100%)}
+.cage .hbody{position:absolute;bottom:0;left:.08em;right:.08em;height:.75em;background:#E8CBA6;border-radius:.05em}
+.cage .door{position:absolute;bottom:0;left:50%;margin-left:-.35em;width:.7em;height:.7em;background:#4A2E20;border-radius:.35em .35em 0 0;overflow:hidden}
+.cage .door .sham{position:absolute;left:-.12em;bottom:0;width:.85em;height:.64em;animation:c-peekdoor 2.6s ease-in-out infinite}
+@keyframes c-drink{0%,100%{transform:rotate(0)}50%{transform:rotate(10deg) translateY(.04em)}}
+@keyframes c-eat{0%,100%{transform:rotate(0)}50%{transform:rotate(12deg) translateY(.03em)}}
+@keyframes c-chew{0%,100%{transform:translateX(0) rotate(0)}50%{transform:translateX(.05em) rotate(4deg)}}
+@keyframes c-drip{0%{transform:translateY(-.12em);opacity:0}30%{opacity:1}100%{transform:translateY(.12em);opacity:0}}
+@keyframes c-wob{from{transform:rotate(-3deg)}to{transform:rotate(3deg)}}
+@keyframes c-run{from{transform:translateY(0)}to{transform:translateY(-.05em)}}
+@keyframes c-peek{0%,100%{transform:translateY(.22em)}50%{transform:translateY(0)}}
+@keyframes c-peekdoor{0%,100%{transform:translateY(.15em)}50%{transform:translateY(0)}}
+@media (prefers-reduced-motion:reduce){.cage *{animation:none !important}}
+
+
+/* =====================================================
+   v3: colors, no scrollbars, fill screen, decorations, music
+   ===================================================== */
+*{scrollbar-width:none}
+*::-webkit-scrollbar{display:none}
+.c-teal{--c:#2FA89A;--bg:#E0F5F1}
+
+/* inputs / boxes: no peach */
+.modal input[type="text"],.modal input[type="email"],.modal textarea{background:#FFF5F8}
+
+/* ----- Food: colored frames ----- */
+main.food .card.safe{--c:#5E9A3F;--bg:#EAF5E2}
+main.food .card.unsafe{--c:#D9455A;--bg:#FDE9EC}
+main.food .card.tips{--c:#3E86C6;--bg:#E6F1FB}
+main.food .card.safe,main.food .card.unsafe,main.food .card.tips{background:var(--bg);border-top-color:var(--c)}
+main.food .card .tag{align-self:flex-start;background:var(--c);color:#fff;padding:2px 10px;border-radius:999px;margin-bottom:6px}
+main.food .pill-list li{background:#fff;border-color:var(--c)}
+main.food .mini{background:#fff}
+main.food .mini strong{color:var(--c)}
+
+/* ----- Breeds: colored frames ----- */
+main.breeds .breed-card{background:var(--bg,#fff)}
+main.breeds .breed-num{color:var(--c)}
+main.breeds .breed-extra .box{background:#fff}
+main.breeds .breed-extra .box strong{color:var(--c)}
+
+/* ----- Decorative animated rows (fill empty space) ----- */
+.deco{flex:1;min-height:0;display:flex;align-items:center;justify-content:space-around;gap:6px;font-size:clamp(1.4rem,4.2vh,2.8rem);line-height:1;pointer-events:none;overflow:hidden}
+.deco span{display:inline-block;animation:d-bob 2.4s ease-in-out infinite;animation-delay:calc(var(--i,0) * -.35s)}
+.deco.sway span{animation-name:d-sway}
+.deco.pulse span{animation-name:d-pulse}
+.deco.wob span{animation-name:d-wob}
+@keyframes d-bob{0%,100%{transform:translateY(6px)}50%{transform:translateY(-8px)}}
+@keyframes d-sway{0%,100%{transform:rotate(-12deg)}50%{transform:rotate(12deg)}}
+@keyframes d-pulse{0%,100%{transform:scale(.85)}50%{transform:scale(1.2)}}
+@keyframes d-wob{0%,100%{transform:translateY(0) rotate(0)}25%{transform:translateY(-8px) rotate(-10deg)}75%{transform:translateY(-4px) rotate(10deg)}}
+.card .deco{min-height:0}
+main.about .card .deco{margin:0}
+
+/* floating sparkles */
+.sp{position:absolute;left:var(--x);top:var(--y);z-index:0;line-height:1;pointer-events:none;animation:d-float 5s ease-in-out infinite;animation-delay:var(--d,0s)}
+@keyframes d-float{0%,100%{transform:translateY(0) rotate(-8deg) scale(1);opacity:.9}50%{transform:translateY(-14px) rotate(8deg) scale(1.15);opacity:1}}
+.zzz{position:absolute;right:calc(14% + var(--o,0px));bottom:30%;font-weight:700;color:#8E6BBF;font-size:clamp(1.2rem,3vh,2rem);pointer-events:none;opacity:0;animation:d-zzz 3.2s ease-in infinite;animation-delay:var(--d,0s)}
+@keyframes d-zzz{0%{transform:translate(0,0) scale(.6);opacity:0}20%{opacity:1}100%{transform:translate(18px,-60px) scale(1.3);opacity:0}}
+main.home .sleep-card{position:relative}
+
+/* ----- Home fit (no overflow) ----- */
+main.home .hero h1{font-size:clamp(1.8rem,min(5.6vh,3.6vw),4rem);line-height:1.1;margin:8px 0}
+main.home .hero p{font-size:clamp(.95rem,2.2vh,1.4rem)}
+main.home .hero .hero-text{max-width:55%;position:relative;z-index:1}
+main.home .hero .tag{font-size:clamp(.8rem,1.8vh,1.1rem)}
+.btn-explore{padding:clamp(8px,1.6vh,14px) clamp(18px,1.8vw,28px);margin-top:clamp(8px,1.6vh,16px)}
+main.home .card h2{font-size:clamp(1.1rem,min(2.8vh,1.6vw),1.7rem);margin-bottom:6px}
+.explore-links .thumb{width:clamp(38px,6.4vh,64px)}
+.facts-list{gap:clamp(5px,1vh,10px)}
+
+/* ----- Fit tweaks on desktop ----- */
+@media (min-width:901px) and (min-height:501px){
+  html{overflow:hidden}
+  main.home{padding:16px 20px 14px;gap:16px}
+  main.home .card{padding:clamp(12px,2vh,22px) clamp(16px,1.4vw,26px)}
+  main.food,main.habitat,main.about{padding:12px 20px 14px;gap:16px}
+  main.breeds{padding:12px 20px 12px}
+  .cage{--s:clamp(36px,min(7vh,5.6vw),84px)}
+  .cage > .cw,.cage > .cf{--s:clamp(26px,min(5.6vh,3.3vw),56px)}
+}
+
+/* ----- Footer lane sizes ----- */
+@media (max-height:820px){.hamster-track{height:76px}.hv{transform:scale(1.5)}.hv-run,.hv-carry{transform-origin:right bottom}}
+@media (max-height:500px){.hamster-track{height:56px}.hv{transform:scale(1.1)}}
+
+/* ----- Music button ----- */
+.music-btn{position:fixed;right:14px;bottom:34px;z-index:60;width:46px;height:46px;border-radius:50%;border:3px solid #fff;background:#E0607E;color:#fff;font-size:1.3rem;line-height:1;cursor:pointer;box-shadow:0 4px 10px rgba(58,36,21,.3);display:flex;align-items:center;justify-content:center}
+.music-btn:hover{background:#c94b69}
+.music-btn.playing{animation:m-beat 1.4s ease-in-out infinite}
+@keyframes m-beat{0%,100%{transform:scale(1)}50%{transform:scale(1.1)}}
+@media (prefers-reduced-motion:reduce){.deco span,.sp,.zzz,.music-btn{animation:none !important}}
+
+/* About: keep Contact card inside on short screens */
+main.about .contact-list{gap:clamp(4px,.9vh,8px);margin:4px 0 8px}
+main.about .contact-list li{padding:clamp(4px,.9vh,8px) 14px;font-size:clamp(.85rem,1.9vh,1.1rem) !important}
+main.about .contact-card .deco{font-size:clamp(1.1rem,3vh,2rem)}
+main.about .contact-card .btn{padding:clamp(7px,1.2vh,10px) 18px}
+@media (min-width:901px) and (max-height:720px){
+  main.about .contact-card{padding:10px 18px}
+  main.about .contact-card .deco{display:none}
+  main.about .contact-card .tag{margin-bottom:2px}
+  main.about .contact-card h2{margin-bottom:4px}
+}
+@media (min-width:901px) and (max-height:720px){
+  main.about .contact-list li{padding:3px 12px}
+  main.about .contact-list{gap:4px;margin:2px 0 6px}
+  main.about .contact-card .btn{padding:6px 16px}
+}
+
+
+/* ===== Creator: bigger photo + waving "Hi" character ===== */
+.avatar{width:clamp(64px,11vh,104px) !important;height:clamp(64px,11vh,104px) !important;font-size:clamp(1.3rem,2.6vh,2rem)}
+main.about .creator{gap:14px}
+.hi-scene{position:relative;flex:1;min-height:0}
+.hi-wrap{position:absolute;inset:0;display:flex;align-items:flex-end;justify-content:center;gap:10px}
+.hi-char{height:100%;width:auto;max-width:none;object-fit:contain;transform-origin:50% 100%;animation:hi-wave 1.6s ease-in-out infinite}
+.hi-bubble{align-self:flex-start;margin-top:4px;background:#fff;color:var(--brown);border:2px solid #B68AD6;border-radius:18px 18px 18px 4px;padding:4px 14px;font-weight:700;font-size:clamp(.95rem,2.4vh,1.5rem);animation:hi-pop 1.6s ease-in-out infinite;transform-origin:0 100%}
+.hi-hand{display:inline-block;transform-origin:70% 80%;animation:hi-hand .8s ease-in-out infinite alternate}
+@keyframes hi-wave{0%,100%{transform:rotate(-4deg) translateY(0)}25%{transform:rotate(4deg) translateY(-6px)}50%{transform:rotate(-4deg) translateY(0)}75%{transform:rotate(4deg) translateY(-4px)}}
+@keyframes hi-pop{0%,100%{transform:scale(1)}50%{transform:scale(1.1)}}
+@keyframes hi-hand{from{transform:rotate(-18deg)}to{transform:rotate(22deg)}}
+
+/* ===== Bigger hamster photos on About ===== */
+.pet-photo{width:clamp(56px,10.5vh,112px)}
+@media (prefers-reduced-motion:reduce){.hi-char,.hi-bubble,.hi-hand{animation:none !important}}
+
+/* creator: character stands at the right side, big */
+main.about .c-lilac{position:relative}
+main.about .c-lilac > p{max-width:56%}
+.hi-scene{position:absolute;right:16px;bottom:0;height:64%;flex:none;min-height:0;width:auto}
+.hi-wrap{position:static;height:100%;display:flex;align-items:flex-end;justify-content:flex-end;gap:8px}
+.hi-bubble{margin-bottom:auto}
+/* contact card: no clipped decoration */
+main.about .contact-card .deco{display:none}
+.hi-bubble{align-self:flex-end;margin-bottom:12px !important;margin-top:0;border-radius:18px 18px 4px 18px;transform-origin:100% 100%}
+main.about .c-lilac > p{line-height:1.45}
+
+/* ===== v4: bigger creator photo + bigger hamster photos + bigger waving Hi ===== */
+.avatar{width:clamp(72px,12.5vh,118px) !important;height:clamp(72px,12.5vh,118px) !important}
+.pet-photo{width:clamp(52px,9.6vh,104px) !important}
+main.about .c-lilac > p{max-width:50%}
+.hi-scene{height:56%;right:14px}
+.hi-char{filter:drop-shadow(0 4px 6px rgba(58,36,21,.2))}
+
+/* ===== v5: livelier waving Hi + auto-adjusting spacing (desktop) ===== */
+.hi-char{animation:hi-wave2 1.5s ease-in-out infinite;transform-origin:50% 100%}
+@keyframes hi-wave2{
+  0%,100%{transform:rotate(0) translateY(0) scale(1,1)}
+  12%{transform:rotate(-7deg) translateY(-12px) scale(.97,1.04)}
+  25%{transform:rotate(8deg) translateY(0) scale(1.03,.97)}
+  37%{transform:rotate(-7deg) translateY(-10px) scale(.97,1.03)}
+  50%{transform:rotate(8deg) translateY(0) scale(1.03,.97)}
+  62%{transform:rotate(-4deg) translateY(-6px)}
+  75%{transform:rotate(0) translateY(0)}
+}
+.hi-hand{animation:hi-hand .45s ease-in-out infinite alternate}
+@keyframes hi-hand{from{transform:rotate(-25deg)}to{transform:rotate(30deg)}}
+@media (prefers-reduced-motion:reduce){.hi-char,.hi-hand{animation:none !important}}
+
+/* Hi character grows/shrinks with the card */
+main.about .c-lilac{min-height:0}
+.hi-scene{height:clamp(120px,66%,420px)}
+
+/* Mission: emoji row scales with free space */
+main.about .mission .deco{font-size:clamp(1.6rem,6vh,4.5rem)}
+
+/* My hamsters: photo fills the row height, so no big gaps / no overlap */
+.pet{align-items:center}
+.pet-photo{width:auto !important;height:100%;max-height:150px;aspect-ratio:1;min-width:0}
+.pet-info strong{font-size:clamp(1rem,2.2vh,1.6rem)}
+main.about .pet-info small{font-size:clamp(.72rem,1.5vh,1.1rem)}
+
+/* Contact: items spread evenly to use the free space */
+main.about .contact-card .contact-list{flex:1;display:flex;flex-direction:column;justify-content:space-evenly;gap:0;margin:6px 0 10px}
+main.about .contact-card .contact-list li{font-size:clamp(.85rem,2.1vh,1.3rem) !important;padding:clamp(6px,1.6vh,16px) 14px}
+main.about .contact-card .btn{font-size:clamp(.95rem,1.9vh,1.25rem);padding:clamp(8px,1.6vh,14px) 24px}
+
+/* v5 fixes for shorter laptop screens */
+.hi-scene{height:clamp(110px,58%,420px)}
+main.about .contact-card .contact-list{min-height:0;margin:4px 0 8px}
+main.about .contact-card .contact-list li{padding:clamp(3px,1vh,14px) 14px}
+main.about .contact-card .btn{flex-shrink:0;padding:clamp(6px,1.3vh,14px) 22px}
