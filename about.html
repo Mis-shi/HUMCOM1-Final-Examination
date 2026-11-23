@@ -43,7 +43,7 @@
 
     <section class="card c-lilac">
       <div class="creator">
-        <div class="avatar"><span aria-hidden="true">MB</span><img src="barlongo.jpg" alt="Mishigel Barlongo" onerror="this.style.display='none'"></div>
+        <div class="avatar"><span aria-hidden="true">MB</span><img src="Barlongo.jpg" alt="Mishigel Barlongo" onerror="this.style.display='none'"></div>
         <div>
           <span class="tag">Created by</span>
           <h2>MISHIGEL BARLONGO</h2>
@@ -86,6 +86,12 @@
       </ul>
       <div class="deco sway" aria-hidden="true"><span style="--i:0">💌</span><span style="--i:1">📞</span><span style="--i:2">🌐</span><span style="--i:3">💬</span></div>
       <a class="btn about-link" href="#message">Send a Message</a>
+    </section>
+
+    <!-- Side video -->
+    <section class="card vid-card c-green">
+      <span class="tag">Watch</span>
+      <video id="vid" src="vid.mp4" autoplay muted loop playsinline controls></video>
     </section>
   </main>
   <script>
@@ -243,6 +249,20 @@
       });
       icon();
       start();
+    })();
+  </script>
+
+  <!-- Side video: autoplay (muted); pause the background music when the video is unmuted -->
+  <script>
+    (function () {
+      var v = document.getElementById('vid'), bgm = document.getElementById('bgm');
+      if (!v) return;
+      v.muted = true;
+      var p = v.play();
+      if (p && p.catch) p.catch(function () {});
+      v.addEventListener('volumechange', function () {
+        if (!v.muted && bgm && !bgm.paused) bgm.pause();
+      });
     })();
   </script>
 
